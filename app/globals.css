@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* IToolbox brand palette (#0c2e8a navy, #ef3f34 red, #50d8af teal) as HSL triples */
+  --itoolbox-navy: 224 84% 29%;
+  --itoolbox-red: 4 85% 57%;
+  --itoolbox-teal: 162 64% 58%;
+
+  /* Semantic design tokens (shadcn/ui convention: HSL triples, no hsl() wrapper) */
+  --background: 0 0% 100%;
+  --foreground: 224 40% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 40% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 40% 10%;
+  --primary: 224 84% 29%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 30% 96%;
+  --secondary-foreground: 224 84% 29%;
+  --muted: 220 20% 96%;
+  --muted-foreground: 220 10% 42%;
+  --accent: 162 64% 58%;
+  --accent-foreground: 224 60% 12%;
+  --destructive: 4 85% 57%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 16% 90%;
+  --input: 220 16% 90%;
+  --ring: 224 84% 29%;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: 227 45% 8%;
+  --foreground: 210 20% 98%;
+  --card: 227 38% 12%;
+  --card-foreground: 210 20% 98%;
+  --popover: 227 38% 12%;
+  --popover-foreground: 210 20% 98%;
+  /* Navy is too dark to carry contrast on a dark background; use the lighter brand blue. */
+  --primary: 224 76% 62%;
+  --primary-foreground: 227 60% 10%;
+  --secondary: 227 30% 18%;
+  --secondary-foreground: 210 20% 98%;
+  --muted: 227 28% 16%;
+  --muted-foreground: 220 14% 68%;
+  --accent: 162 64% 52%;
+  --accent-foreground: 227 60% 10%;
+  --destructive: 4 75% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 227 25% 20%;
+  --input: 227 25% 20%;
+  --ring: 224 76% 62%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* An evidence card the answer just cited: flash it so the eye finds it. */
+@keyframes cite-flash {
+  0% { box-shadow: 0 0 0 3px hsl(var(--accent)); }
+  100% { box-shadow: 0 0 0 0 hsl(var(--accent) / 0); }
+}
+.cite-flash { animation: cite-flash 1.6s ease-out; }

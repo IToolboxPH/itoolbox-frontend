@@ -1,0 +1,23 @@
+# ── Node ─────────────────────────────────────────────────────────────────────
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+
+# ── Secrets ──────────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── IDE / OS ─────────────────────────────────────────────────────────────────
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# NOTE: packages/ui/types/api.gen.ts IS committed on purpose. It is generated
+# from itoolbox-backend's openapi.api.json but checked in so this repo builds
+# standalone. Regenerate with: npm run gen:types

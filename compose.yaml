@@ -1,0 +1,29 @@
+# itoolbox-web — local / on-premise deployment.
+#
+#   docker compose up --build -d          # http://localhost:3100
+#
+# Pair it with the API stack in itoolbox-backend:
+#
+#   (cd ../itoolbox-backend && docker compose up -d)   # api :8100
+#   docker compose up --build -d
+#
+# name: its own project, so `docker compose down` here never touches the
+# backend's containers (which run under "itoolbox").
+name: itoolbox-web
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # BUILD args, not runtime env. Next bakes NEXT_PUBLIC_* into the static
+      # export, so changing them requires `--build`, not a restart.
+      args:
+        # Reachable from the BROWSER, not from inside this container. Left unset,
+        # lib/auth.ts's apiUrl() uses the host that served the page on port 8100.
+        # Set it when the API is elsewhere, e.g. the host's Tailscale Serve URL.
+        NEXT_PUBLIC_API_URL: "${NEXT_PUBLIC_API_URL:-}"
+    container_name: itoolbox-web
+    ports:
+      - "127.0.0.1:${WEB_PORT:-3100}:80"
+    restart: unless-stopped
