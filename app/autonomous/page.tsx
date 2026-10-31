@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getStoredAuth, logout } from "@/lib/auth";
 import { agentApi } from "@/lib/api-client";
 import { useBranding } from "@/components/branding-provider";
-import { BantayWidget } from "@/components/bantay-widget";
+import { BantAIWidget } from "@/components/bantai-widget";
 import type { InvestigationSummary } from "@itoolbox/ui/types";
 
 const STATUS_BADGE: Record<InvestigationSummary["status"], string> = {
@@ -53,7 +53,7 @@ export default function AutonomousPage() {
             <span className="text-gray-400 dark:text-white/40 text-xs hidden sm:block">{branding.appName}</span>
           </Link>
           <span className="text-gray-300 dark:text-white/20 text-xs">/</span>
-          <span className="text-gray-600 dark:text-white/60 text-xs font-bold truncate">📡 Autonomous Typhoon-Operation Agent</span>
+          <span className="text-gray-600 dark:text-white/60 text-xs font-bold truncate">📡 BantAI Intelligent Workflow Automation</span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <span className="hidden sm:inline text-[9px] font-black tracking-widest uppercase text-green-600 dark:text-green-400 border border-green-400/40 dark:border-green-500/30 bg-green-50 dark:bg-green-500/10 rounded-full px-2 py-1">🌐 Public</span>
@@ -74,10 +74,11 @@ export default function AutonomousPage() {
           <div className="inline-flex items-center gap-2 text-[10px] font-black tracking-widest uppercase text-green-600 dark:text-green-400 border border-green-400/40 dark:border-green-500/30 bg-green-50 dark:bg-green-500/10 rounded-full px-3 py-1 mb-4">
             🌐 Public Overview · Storm Runs Need a Sign-In
           </div>
-          <h1 className="text-4xl font-black mb-3">Autonomous Typhoon-Operation Agent</h1>
+          <h1 className="text-4xl font-black mb-3">BantAI Intelligent Workflow Automation</h1>
           <p className="text-gray-500 dark:text-white/50 text-base max-w-xl mx-auto">
-            Detect, alert, recommend — when a PAGASA bulletin puts company sites under a signal, Bantay
-            scores each site&apos;s exposure and drafts actions for the operations manager to approve.
+            Intelligent workflow orchestration and automation. The first workflow is storm response: when a
+            PAGASA bulletin puts your sites under a signal, BantAI scores each site&apos;s exposure and drafts
+            actions for a person to approve.
           </p>
           {isLoggedIn && userName && (
             <p className="mt-3 text-green-600 dark:text-green-400 text-xs font-bold">
@@ -118,10 +119,10 @@ export default function AutonomousPage() {
                 <p className="text-gray-400 dark:text-white/40 text-[11px] mt-0.5">Investigations and proposed actions — approval is human sign-off, not automatic execution.</p>
               </div>
               <Link
-                href="/bantay"
+                href="/bantai"
                 className="px-4 py-2 rounded-lg text-xs font-black text-green-700 dark:text-green-400 border border-green-500/30 bg-green-50 dark:bg-green-500/10 hover:bg-green-100 dark:hover:bg-green-500/20 transition-colors"
               >
-                Ask Bantay →
+                Ask BantAI →
               </Link>
             </div>
 
@@ -144,7 +145,7 @@ export default function AutonomousPage() {
                   )}
                   <div className="space-y-2">
                     {(runs ?? []).map((r) => (
-                      <Link key={r.id} href={`/bantay?id=${r.id}`} className="block rounded-xl border border-gray-200 dark:border-white/[0.07] p-3 hover:bg-gray-50 dark:hover:bg-white/[0.03] transition-colors">
+                      <Link key={r.id} href={`/bantai?id=${r.id}`} className="block rounded-xl border border-gray-200 dark:border-white/[0.07] p-3 hover:bg-gray-50 dark:hover:bg-white/[0.03] transition-colors">
                         <div className="flex items-center justify-between gap-2 mb-1">
                           <span className="text-xs font-bold truncate">{r.question}</span>
                           <span className={`text-[9px] font-black uppercase tracking-widest rounded-full px-2 py-0.5 shrink-0 ${STATUS_BADGE[r.status]}`}>
@@ -206,7 +207,7 @@ export default function AutonomousPage() {
         </div>
 
         <p className="text-center text-[11px] text-gray-400 dark:text-white/30 mb-10 max-w-xl mx-auto">
-          Bantay supports business-continuity decisions. It is not a warning service and defers to PAGASA, NDRRMC, and LGU advisories.
+          BantAI supports business-continuity decisions. It is not a warning service and defers to PAGASA, NDRRMC, and LGU advisories.
         </p>
 
         {!isLoggedIn && (
@@ -224,7 +225,7 @@ export default function AutonomousPage() {
           </Link>
         </div>
       </div>
-      <BantayWidget/>
+      <BantAIWidget/>
     </div>
   );
 }

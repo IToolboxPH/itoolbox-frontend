@@ -16,20 +16,20 @@ const SECTIONS = [
     border: "border-teal-400/40 dark:border-teal-500/30",
     bg: "bg-teal-50 dark:bg-teal-500/10",
     docs: [
-      { title: "Platform Overview",    desc: "The IToolbox Ecosystem Platform and its seven modules, with Bantay at the centre.",       tag: "Guide"     },
-      { title: "Onboarding Checklist", desc: "Getting an account, signing in, and asking Bantay your first question.",                 tag: "Guide"     },
+      { title: "Platform Overview",    desc: "The IToolbox Ecosystem Platform and its seven modules, with BantAI at the centre.",       tag: "Guide"     },
+      { title: "Onboarding Checklist", desc: "Getting an account, signing in, and asking BantAI your first question.",                 tag: "Guide"     },
       { title: "Roles & Access",       desc: "What viewers, analysts, admins, and super admins can do, and how to request access.",    tag: "Reference" },
       { title: "Your IToolbox ID",     desc: "Your account profile, your role, and changing your password.",                          tag: "Guide"     },
     ],
   },
   {
     icon: "💬",
-    title: "Bantay",
+    title: "BantAI",
     color: "text-orange-600 dark:text-orange-400",
     border: "border-orange-400/40 dark:border-orange-500/30",
     bg: "bg-orange-50 dark:bg-orange-500/10",
     docs: [
-      { title: "What Bantay Can Do",       desc: "Capabilities, limits, and how to phrase a good “why” question.",                                  tag: "Guide"     },
+      { title: "What BantAI Can Do",       desc: "Capabilities, limits, and how to phrase a good “why” question.",                                  tag: "Guide"     },
       { title: "Reading an Investigation", desc: "The trail, the evidence tables, and how each E1-style citation links an answer to its rows.",      tag: "Guide"     },
       { title: "Choosing a Model",         desc: "Nemotron, Claude, Grok, or the scripted demo — when to use each.",                                tag: "Reference" },
       { title: "Agent API",                desc: "POST /api/v1/agent/ask streams an investigation as server-sent events.",                         tag: "API"       },
@@ -37,7 +37,7 @@ const SECTIONS = [
   },
   {
     icon: "📡",
-    title: "Autonomous Typhoon-Operations",
+    title: "Workflow Automation: Storm Response",
     color: "text-green-600 dark:text-green-400",
     border: "border-green-400/40 dark:border-green-500/30",
     bg: "bg-green-50 dark:bg-green-500/10",
@@ -50,12 +50,12 @@ const SECTIONS = [
   },
   {
     icon: "🤖",
-    title: "Intelligence & Analytics",
+    title: "BantAI Strategic Intelligence",
     color: "text-purple-600 dark:text-purple-400",
     border: "border-purple-400/40 dark:border-purple-500/30",
     bg: "bg-purple-50 dark:bg-purple-500/10",
     docs: [
-      { title: "Data Sources",            desc: "Browsing what Bantay can see: sources, tables, and columns through Zetaris.",                         tag: "Guide"     },
+      { title: "Data Sources",            desc: "Browsing what BantAI can see: sources, tables, and columns through Zetaris.",                         tag: "Guide"     },
       { title: "The Data Plan",           desc: "Bulletins, hazard layers, branches, inventory, deliveries, SOPs — which are real and which synthetic.", tag: "Reference" },
       { title: "Zetaris AI Data Harness", desc: "How federated queries reach each source in place, with nothing copied into a warehouse.",             tag: "Reference" },
       { title: "Harness API",             desc: "/api/v1/harness/*: status, sources, tables, columns, and read-only queries.",                         tag: "API"       },
@@ -82,8 +82,8 @@ const SECTIONS = [
     bg: "bg-emerald-50 dark:bg-emerald-500/10",
     docs: [
       { title: "Storm-Run SOP",               desc: "The operations manager's checklist from the first bulletin to the post-storm review.", tag: "Reference" },
-      { title: "Business Continuity Hand-off", desc: "How Bantay's briefs fit a company's continuity SOP and insurance terms.",                tag: "Reference" },
-      { title: "Advisories & Authority",      desc: "Bantay supports decisions; PAGASA, NDRRMC, and LGU advisories stay the authority.",       tag: "Reference" },
+      { title: "Business Continuity Hand-off", desc: "How BantAI's briefs fit a company's continuity SOP and insurance terms.",                tag: "Reference" },
+      { title: "Advisories & Authority",      desc: "BantAI supports decisions; PAGASA, NDRRMC, and LGU advisories stay the authority.",       tag: "Reference" },
     ],
   },
   {
@@ -193,7 +193,7 @@ export default function DocsPage() {
           </div>
           <h1 className="text-2xl font-black mb-3">Sign in to access Docs</h1>
           <p className={`text-sm leading-relaxed mb-2 ${sub}`}>
-            The {branding.shortName} Docs Hub holds user guides, API references, architecture documentation, and SOPs for Bantay and all seven platform modules.
+            The {branding.shortName} Docs Hub holds user guides, API references, architecture documentation, and SOPs for BantAI and all seven platform modules.
           </p>
           <p className={`text-sm leading-relaxed mb-8 ${sub}`}>
             This content is <span className="font-bold text-teal-600 dark:text-teal-400">admin-curated and access-controlled</span>. You must sign in with an authorized account to continue.
@@ -281,7 +281,7 @@ export default function DocsPage() {
             <span className="text-teal-600 dark:text-teal-400 font-bold">User Guides</span>,{" "}
             <span className="text-teal-600 dark:text-teal-400 font-bold">API Reference</span>,{" "}
             <span className="text-teal-600 dark:text-teal-400 font-bold">Platform Architecture</span>,
-            {" "}and <span className="text-teal-600 dark:text-teal-400 font-bold">SOPs</span> — covering Bantay and all seven modules.
+            {" "}and <span className="text-teal-600 dark:text-teal-400 font-bold">SOPs</span> — covering BantAI and all seven modules.
           </p>
         </div>
 

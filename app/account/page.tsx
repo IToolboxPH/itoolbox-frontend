@@ -6,7 +6,7 @@ import Link from "next/link";
 import { getStoredAuth, logout } from "@/lib/auth";
 import { authApi } from "@/lib/api-client";
 import { AppIcon } from "@/components/app-icon";
-import { BantayWidget } from "@/components/bantay-widget";
+import { BantAIWidget } from "@/components/bantai-widget";
 import { getVisibleApps, canAccessApp, roleLabel as roleLabelOf } from "@/lib/platform-apps";
 import { useBranding, useModuleOverrides } from "@/components/branding-provider";
 import type { UserProfile } from "@itoolbox/ui/types";
@@ -165,7 +165,7 @@ export default function AccountPage() {
             </div>
           </div>
           <p className="text-gray-400 dark:text-white/30 text-xs text-center max-w-xs">
-            Your {branding.shortName} ID badge — one identity across Bantay and the {branding.appName}.
+            Your {branding.shortName} ID badge — one identity across BantAI and the {branding.appName}.
           </p>
         </div>
 
@@ -257,10 +257,10 @@ export default function AccountPage() {
         {/* Feature roadmap */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
           {[
-            { icon: "🪪", title: `${branding.shortName} ID`,  desc: "Your identity across Bantay and every platform module — role, access, and sign-in in one card.", status: "live"    },
+            { icon: "🪪", title: `${branding.shortName} ID`,  desc: "Your identity across BantAI and every platform module — role, access, and sign-in in one card.", status: "live"    },
             { icon: "🔑", title: "Role-Based Access",         desc: "Viewer, analyst, admin, or super admin: your role decides what you can open and do.",            status: "live"    },
             { icon: "🔐", title: "Self-Service Password",     desc: "Change your password any time from this page. Sessions are signed and expire on their own.",    status: "live"    },
-            { icon: "🔔", title: "Storm Alerts",              desc: "Bantay's action briefs for your sites, sent to branch heads by SMS or Viber.",                    status: "planned" },
+            { icon: "🔔", title: "Storm Alerts",              desc: "BantAI's action briefs for your sites, sent to branch heads by SMS or Viber.",                    status: "planned" },
             { icon: "📲", title: "Mobile Account App",        desc: "Carry your IToolbox ID and approve storm actions from your phone.",                              status: "planned" },
             { icon: "🛡️", title: "Privacy Controls",          desc: "Choose what your profile shows to other members of your organization.",                         status: "planned" },
           ].map((f) => (
@@ -283,7 +283,7 @@ export default function AccountPage() {
           </Link>
         </div>
       </div>
-      <BantayWidget/>
+      <BantAIWidget/>
     </div>
   );
 }

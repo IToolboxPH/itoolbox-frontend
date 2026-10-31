@@ -7,8 +7,8 @@ import { BrandingProvider } from "@/components/branding-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "IToolbox · Bantay",
-  description: "Bantay, the typhoon-operations agent that explains why: from storm bulletin to evidence-backed action plan",
+  title: "IToolbox · BantAI",
+  description: "BantAI, IToolbox's AI assistant that explains why: accessible information, faster responses, and the evidence behind every answer",
 };
 
 export default function RootLayout({

@@ -84,7 +84,7 @@ body {
 
 /* Landing page per-slide glow overlays, keyed by PLATFORM_APPS key */
 .slide-glow-account      { background: radial-gradient(ellipse 60% 50% at 30% 40%, #3b82f618 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #3b82f60f 0%, transparent 70%); }
-.slide-glow-bantay       { background: radial-gradient(ellipse 60% 50% at 30% 40%, #f9731618 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #f973160f 0%, transparent 70%); }
+.slide-glow-bantai       { background: radial-gradient(ellipse 60% 50% at 30% 40%, #f9731618 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #f973160f 0%, transparent 70%); }
 .slide-glow-autonomous   { background: radial-gradient(ellipse 60% 50% at 30% 40%, #22c55e18 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #22c55e0f 0%, transparent 70%); }
 .slide-glow-intelligence { background: radial-gradient(ellipse 60% 50% at 30% 40%, #a855f718 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #a855f70f 0%, transparent 70%); }
 .slide-glow-tracker      { background: radial-gradient(ellipse 60% 50% at 30% 40%, #ec489918 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #ec48990f 0%, transparent 70%); }

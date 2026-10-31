@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { harnessApi } from "@/lib/api-client";
-import { BantayWidget } from "@/components/bantay-widget";
+import { BantAIWidget } from "@/components/bantai-widget";
 import type { Column, DataSource, HarnessStatus, Table } from "@itoolbox/ui/types";
 
 const CARD = "bg-white dark:bg-white/[0.04] rounded-xl border border-gray-200 dark:border-white/10";
 const ITEM = "w-full rounded-lg px-2 py-2 text-left transition-colors hover:bg-gray-100 dark:hover:bg-white/[0.06]";
 const ACTIVE = "bg-purple-500/15 text-purple-700 dark:text-purple-300";
 
-/** What Bantay can see: the sources Zetaris federates, their tables and columns. */
+/** What BantAI can see: the sources Zetaris federates, their tables and columns. */
 export default function SourcesPage() {
   const [status, setStatus] = useState<HarnessStatus | null>(null);
   const [sources, setSources] = useState<DataSource[]>([]);
@@ -51,7 +51,7 @@ export default function SourcesPage() {
       <div className="mb-6 flex flex-wrap items-end gap-3">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Data Sources</h1>
-          <p className="text-sm text-gray-400 dark:text-white/40 mt-0.5">Every source Bantay queries in place through the Zetaris AI Data Harness</p>
+          <p className="text-sm text-gray-400 dark:text-white/40 mt-0.5">Every source BantAI queries in place through the Zetaris AI Data Harness</p>
         </div>
         {status && (
           <span className={`ml-auto text-[10px] font-black uppercase tracking-widest rounded-full px-2.5 py-1 border ${
@@ -113,7 +113,7 @@ export default function SourcesPage() {
         </div>
       </div>
 
-      <BantayWidget/>
+      <BantAIWidget/>
     </div>
   );
 }

@@ -217,7 +217,7 @@ export default function DashboardPage() {
             <p className={`text-xs mt-0.5 ${sub}`}>Full-featured workspaces with dedicated sub-apps</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {APPS.filter((app) => ["bantay", "autonomous", "intelligence"].includes(app.key)).map((app) => {
+            {APPS.filter((app) => ["bantai", "autonomous", "intelligence"].includes(app.key)).map((app) => {
               const accessible = canAccess(app);
               return (
                 <div key={app.key}
@@ -321,23 +321,23 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* ── Recent Activity — your latest Bantay investigations ── */}
+        {/* ── Recent Activity — your latest BantAI investigations ── */}
         <div className={`rounded-2xl border p-5 ${card}`}>
           <div className="flex items-center justify-between mb-4">
             <p className={`text-[10px] font-black uppercase tracking-widest ${sub}`}>Recent Activity</p>
-            <Link href="/bantay" className={`text-[9px] hover:underline ${sub}`}>All investigations →</Link>
+            <Link href="/bantai" className={`text-[9px] hover:underline ${sub}`}>All investigations →</Link>
           </div>
           {activity === null ? (
             <p className={`text-xs ${sub}`}>Loading…</p>
           ) : activity.length === 0 ? (
-            <p className={`text-xs ${sub}`}>No activity yet — ask Bantay a question to start.</p>
+            <p className={`text-xs ${sub}`}>No activity yet — ask BantAI a question to start.</p>
           ) : (
             <div className="space-y-3">
               {activity.map((a) => (
-                <Link key={a.id} href={`/bantay?id=${a.id}`} className="flex items-start gap-3 group">
+                <Link key={a.id} href={`/bantai?id=${a.id}`} className="flex items-start gap-3 group">
                   <div className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${STATUS_DOT[a.status]}`}/>
                   <div className="flex-1 min-w-0">
-                    <p className={`text-xs leading-snug group-hover:underline ${heading}`}>💬 Asked Bantay: {a.question}</p>
+                    <p className={`text-xs leading-snug group-hover:underline ${heading}`}>💬 Asked BantAI: {a.question}</p>
                     <p className={`text-[10px] mt-0.5 ${sub}`}>{ago(a.created_at)} · {a.status}</p>
                   </div>
                 </Link>

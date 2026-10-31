@@ -11,7 +11,7 @@ const CATEGORIES = [
   { value: "bug",        label: "🐛 Bug Report",     desc: "Something is broken or not working as expected" },
   { value: "access",     label: "🔑 Account Access", desc: "Can't sign in, forgot your password, or need a role change" },
   { value: "feature",    label: "✨ Feature Request", desc: "Suggest a new feature or improvement" },
-  { value: "question",   label: "❓ Question / Help", desc: "Need guidance on how to use Bantay or the platform" },
+  { value: "question",   label: "❓ Question / Help", desc: "Need guidance on how to use BantAI or the platform" },
   { value: "other",      label: "📋 Other",           desc: "Anything else not covered above" },
 ];
 
@@ -142,7 +142,7 @@ export default function SupportPage() {
             <div className="mb-8">
               <h1 className="text-2xl font-black mb-1">Support Center</h1>
               <p className="text-gray-500 dark:text-white/40 text-sm">
-                Report bugs, request access, or ask questions about Bantay and the {branding.appName}.
+                Report bugs, request access, or ask questions about BantAI and the {branding.appName}.
               </p>
               {user ? (
                 <div className="mt-3 flex items-center gap-2 text-xs text-gray-400 dark:text-white/30">

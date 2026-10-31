@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { harnessApi } from "@/lib/api-client";
 import { INTELLIGENCE_SUBPAGES } from "@/lib/nav";
-import { BantayWidget } from "@/components/bantay-widget";
+import { BantAIWidget } from "@/components/bantai-widget";
 import type { DataSource, HarnessStatus } from "@itoolbox/ui/types";
 
 const SUBPAGE_DESC: Record<string, string> = {
-  "Data Sources": "Every source Zetaris federates for Bantay, with its tables and columns.",
+  "Data Sources": "Every source Zetaris federates for BantAI, with its tables and columns.",
 };
 
 export default function IntelligenceOverview() {
@@ -26,7 +26,7 @@ export default function IntelligenceOverview() {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Intelligence & Analytics</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">BantAI Strategic Intelligence</h1>
         <p className="text-sm text-gray-400 dark:text-white/40 mt-0.5">Empowering Decisions Through Intelligent Automation</p>
       </div>
 
@@ -59,15 +59,15 @@ export default function IntelligenceOverview() {
             <div className="text-xs text-gray-400 dark:text-white/40 mt-1">Open →</div>
           </Link>
         ))}
-        <Link href="/bantay"
+        <Link href="/bantai"
           className="block bg-white dark:bg-white/[0.04] rounded-xl border border-gray-200 dark:border-white/10 p-4 hover:bg-gray-50 dark:hover:bg-white/[0.08] hover:border-gray-300 dark:hover:border-white/20 transition-colors">
-          <div className="text-sm font-semibold text-gray-900 dark:text-white">Ask Bantay</div>
+          <div className="text-sm font-semibold text-gray-900 dark:text-white">Ask BantAI</div>
           <div className="text-xs text-gray-500 dark:text-white/50 mt-1">Investigate a question across these sources, with the evidence shown.</div>
           <div className="text-xs text-gray-400 dark:text-white/40 mt-1">Open →</div>
         </Link>
       </div>
 
-      <BantayWidget/>
+      <BantAIWidget/>
     </div>
   );
 }

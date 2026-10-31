@@ -12,13 +12,14 @@ import { InvestigationPanel } from "@/components/agent/investigation-panel";
 import { ModelPicker } from "@/components/agent/model-picker";
 import type { InvestigationSummary, ModelInfo, UserProfile } from "@itoolbox/ui/types";
 
+// Each answerable from the sources registered today (WEATHER); add more as sources land.
 const EXAMPLES = [
-  "Which branches should close early if Signal No. 3 is raised over Leyte?",
-  "Which sites sit in flood-prone zones, and how much stock is at risk there?",
-  "Which deliveries in the next 48 hours cross the storm's path?",
+  "Which cities should prepare for heavy rain in the next 48 hours, and why?",
+  "Is it raining in Tacloban now, and does that match the forecast?",
+  "Saan pinakamainit ngayon, at gaano kalakas ang hangin doon?",
 ];
 
-export default function BantayPage() {
+export default function BantAIPage() {
   return (
     // useSearchParams needs a Suspense boundary in a static export.
     <Suspense fallback={null}>
@@ -53,7 +54,7 @@ function Workspace() {
 
   useEffect(() => {
     const { token, user: u } = getStoredAuth();
-    if (!token) { router.replace("/login?page=bantay"); return; }
+    if (!token) { router.replace("/login?page=bantai"); return; }
     setUser(u);
     agentApi
       .models()
@@ -65,7 +66,7 @@ function Workspace() {
     refreshHistory();
   }, [router, refreshHistory]);
 
-  // A past investigation, from the history list or a shared /bantay?id= link.
+  // A past investigation, from the history list or a shared /bantai?id= link.
   useEffect(() => {
     if (!selectedId || selectedId === view?.id) return;
     abortRef.current?.abort();
@@ -98,7 +99,7 @@ function Workspace() {
     setError(null);
     setQuestion("");
     setView(emptyView(text));
-    if (selectedId) router.replace("/bantay");
+    if (selectedId) router.replace("/bantai");
     try {
       await agentApi.ask({ question: text, model: model || null }, (event) => {
         setView((v) => (v ? applyEvent(v, event) : v));
@@ -117,13 +118,13 @@ function Workspace() {
     }
   }
 
-  // A question handed over from the Bantay widget or the login teaser (?q=)
+  // A question handed over from the BantAI widget or the login teaser (?q=)
   // runs once the default model is known.
   useEffect(() => {
     if (!handedOverQuestion || handedOver.current) return;
     if (!model) { setQuestion(handedOverQuestion); return; }
     handedOver.current = true;
-    router.replace("/bantay");
+    router.replace("/bantai");
     void investigate(handedOverQuestion);
     // investigate is recreated every render; the ref guarantees a single run.
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -134,7 +135,7 @@ function Workspace() {
     setView(null);
     setQuestion("");
     setError(null);
-    router.replace("/bantay");
+    router.replace("/bantai");
     inputRef.current?.focus();
   }
 
@@ -155,12 +156,12 @@ function Workspace() {
             <span className="text-gray-400 dark:text-white/40 text-xs hidden sm:block">{branding.appName}</span>
           </Link>
           <span className="text-gray-300 dark:text-white/20 text-xs">/</span>
-          <span className="text-gray-600 dark:text-white/60 text-xs font-bold truncate">💬 Ask Bantay</span>
+          <span className="text-gray-600 dark:text-white/60 text-xs font-bold truncate">💬 Ask BantAI</span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <div className="hidden sm:flex items-center gap-1.5 text-[10px] text-gray-400 dark:text-white/30">
             <div className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"/>
-            Bantay · Typhoon-Operations Agent
+            BantAI · AI Chat Assistant
           </div>
           <button type="button" onClick={() => logout()} className="text-xs text-gray-400 dark:text-white/30 hover:text-red-500 dark:hover:text-red-400 transition-colors">Sign out</button>
           <Link href="/dashboard" className="px-3 py-1.5 text-[11px] font-bold text-white bg-itoolbox-red hover:bg-red-700 rounded-lg transition-colors">← Dashboard</Link>
@@ -174,7 +175,7 @@ function Workspace() {
           <HistoryList
             items={history}
             activeId={view?.id ?? null}
-            onSelect={(id) => router.push(`/bantay?id=${id}`)}
+            onSelect={(id) => router.push(`/bantai?id=${id}`)}
             onNew={startNew}
           />
         </aside>
@@ -183,17 +184,17 @@ function Workspace() {
         <main className="flex-1 overflow-y-auto">
           <div className="px-4 py-6 max-w-4xl w-full mx-auto flex flex-col gap-4">
             <div className="flex flex-col items-center text-center mb-2">
-              <img src="/icons/bantay.jpg" alt="Bantay"
+              <img src="/icons/bantai.jpg" alt="BantAI"
                 className="w-16 h-16 rounded-2xl object-cover mb-3 shadow-xl shadow-orange-900/30"/>
-              <h1 className="text-xl font-black">Ask Bantay</h1>
-              <p className="text-gray-400 dark:text-white/40 text-xs mt-1">The Typhoon-Operations Agent That Explains Why · {branding.appName}</p>
+              <h1 className="text-xl font-black">Ask BantAI</h1>
+              <p className="text-gray-400 dark:text-white/40 text-xs mt-1">The AI Assistant That Explains Why · {branding.appName}</p>
             </div>
 
             {/* Greeting */}
             <div className="flex gap-3 justify-start">
-              <img src="/icons/bantay.jpg" alt="" className="w-8 h-8 rounded-xl object-cover shrink-0 mt-0.5"/>
+              <img src="/icons/bantai.jpg" alt="" className="w-8 h-8 rounded-xl object-cover shrink-0 mt-0.5"/>
               <div className="max-w-[80%] rounded-2xl rounded-bl-md px-4 py-3 text-sm leading-relaxed bg-white dark:bg-white/[0.06] border border-gray-200 dark:border-white/[0.08] text-gray-700 dark:text-white/80 shadow-sm dark:shadow-none">
-                Hi! I&apos;m Bantay — I watch the storm so your operations team doesn&apos;t have to guess. Ask me why, and I&apos;ll plan an investigation, query every source in place, and show the evidence behind each answer.
+                Hi! I&apos;m BantAI — I watch the storm so your operations team doesn&apos;t have to guess. Ask me why, and I&apos;ll plan an investigation, query every source in place, and show the evidence behind each answer.
               </div>
             </div>
 
@@ -216,7 +217,7 @@ function Workspace() {
                     <ul className="space-y-1">
                       {history.slice(0, 5).map((it) => (
                         <li key={it.id}>
-                          <button type="button" onClick={() => router.push(`/bantay?id=${it.id}`)}
+                          <button type="button" onClick={() => router.push(`/bantai?id=${it.id}`)}
                             className="w-full text-left text-xs text-gray-600 dark:text-white/60 hover:text-gray-900 dark:hover:text-white truncate py-1">
                             {it.question}
                           </button>
@@ -240,9 +241,9 @@ function Workspace() {
                   </div>
                 </div>
 
-                {/* Bantay's investigation */}
+                {/* BantAI's investigation */}
                 <div className="flex gap-3 justify-start">
-                  <img src="/icons/bantay.jpg" alt="" className="w-8 h-8 rounded-xl object-cover shrink-0 mt-0.5"/>
+                  <img src="/icons/bantai.jpg" alt="" className="w-8 h-8 rounded-xl object-cover shrink-0 mt-0.5"/>
                   <div className="min-w-0 flex-1">
                     <InvestigationPanel view={view} hideQuestion />
                   </div>
@@ -267,7 +268,7 @@ function Workspace() {
           <ModelPicker models={models} value={model} onChange={setModel} disabled={running}
             className="h-auto rounded-xl bg-white dark:bg-white/[0.05] border-gray-200 dark:border-white/10 text-xs max-w-[9rem] sm:max-w-[12rem]"/>
           <input ref={inputRef} type="text" value={question} onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Ask Bantay why…"
+            placeholder="Ask BantAI why…"
             className="flex-1 min-w-0 bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm placeholder-gray-300 dark:placeholder-white/20 focus:outline-none focus:border-orange-400/60 dark:focus:border-orange-500/40 transition-colors"/>
           {running ? (
             <button type="button" aria-label="Stop the investigation" onClick={() => abortRef.current?.abort()}

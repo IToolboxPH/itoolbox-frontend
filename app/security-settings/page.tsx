@@ -6,7 +6,7 @@ import Link from "next/link";
 import { getStoredAuth, logout } from "@/lib/auth";
 import { adminApi } from "@/lib/api-client";
 import { useTheme } from "@/components/theme-provider";
-import { BantayWidget } from "@/components/bantay-widget";
+import { BantAIWidget } from "@/components/bantai-widget";
 import { isAdmin } from "@/lib/platform-apps";
 import { Switch } from "@/components/ui/switch";
 import { Sun, Moon } from "lucide-react";
@@ -34,8 +34,8 @@ const ROLE_LABELS: Record<GlobalRole, string> = {
 const ROLE_DESCRIPTIONS: Record<GlobalRole, string> = {
   super_admin: "Full platform control — manages users, admins, and every module",
   admin:       "Manages users and model checks; sees everyone's investigations",
-  analyst:     "Asks Bantay and runs read-only SQL through the data harness",
-  viewer:      "Asks Bantay and reads its own investigations",
+  analyst:     "Asks BantAI and runs read-only SQL through the data harness",
+  viewer:      "Asks BantAI and reads its own investigations",
 };
 
 const ROLE_COLORS: Record<GlobalRole, string> = {
@@ -54,7 +54,7 @@ const ROLE_HEX: Record<GlobalRole, string> = {
 
 // What the backend enforces per role (modules/*/router.py), for the Access tab.
 const PERMISSIONS: { label: string; roles: GlobalRole[] }[] = [
-  { label: "Ask Bantay, read own investigations", roles: ["super_admin", "admin", "analyst", "viewer"] },
+  { label: "Ask BantAI, read own investigations", roles: ["super_admin", "admin", "analyst", "viewer"] },
   { label: "Browse data sources",                 roles: ["super_admin", "admin", "analyst", "viewer"] },
   { label: "Run read-only SQL on the harness",    roles: ["super_admin", "admin", "analyst"] },
   { label: "See everyone's investigations",       roles: ["super_admin", "admin"] },
@@ -639,7 +639,7 @@ export default function SecurityPage() {
           )}
         </main>
       </div>
-      <BantayWidget/>
+      <BantAIWidget/>
     </div>
   );
 }

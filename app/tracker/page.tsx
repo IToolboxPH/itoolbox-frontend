@@ -1,9 +1,9 @@
 "use client";
 
-import { BantayWidget } from "@/components/bantay-widget";
+import { BantAIWidget } from "@/components/bantai-widget";
 
-// The sub-apps nm-web ships for this module; itoolbox-backend has no tracker
-// routes yet, so they are shown as planned rather than linked.
+// The sub-apps this module will have; itoolbox-backend has no tracker routes
+// yet, so they are shown as planned rather than linked.
 const PLANNED = [
   { icon: "📁", title: "Projects", desc: "Every engagement with its owner, status, priority, and milestones." },
   { icon: "👥", title: "Team",     desc: "Who is on what, and how much capacity each person has left." },
@@ -35,10 +35,10 @@ export default function TrackerOverview() {
       </div>
 
       <p className="text-xs text-gray-400 dark:text-white/30 mt-6">
-        Project tracking arrives in a later release. Until then, Bantay&apos;s investigations are listed on the dashboard.
+        Project tracking arrives in a later release. Until then, BantAI&apos;s investigations are listed on the dashboard.
       </p>
 
-      <BantayWidget/>
+      <BantAIWidget/>
     </div>
   );
 }

@@ -69,7 +69,7 @@ function SlideIcon({ icon, imgSrc, name, size = "lg" }: {
 /* ── Per-slide glow overlay classes (defined in globals.css) ─────── */
 const SLIDE_GLOW_CLS: Record<string, string> = {
   account:      "slide-glow-account",
-  bantay:       "slide-glow-bantay",
+  bantai:       "slide-glow-bantai",
   autonomous:   "slide-glow-autonomous",
   intelligence: "slide-glow-intelligence",
   tracker:      "slide-glow-tracker",
@@ -80,7 +80,7 @@ const SLIDE_GLOW_CLS: Record<string, string> = {
 /* ── Slide accent text classes (avoids runtime inline color styles) ─ */
 const SLIDE_TEXT_CLS: Record<string, string> = {
   account:      "text-blue-500",
-  bantay:       "text-orange-500",
+  bantai:       "text-orange-500",
   autonomous:   "text-green-500",
   intelligence: "text-purple-500",
   tracker:      "text-pink-500",
@@ -94,23 +94,23 @@ const SLIDE_TEXT_CLS: Record<string, string> = {
 const SLIDE_EXTRAS: Record<string, { num: string; hype: string; detail: string }> = {
   account: {
     num: "01",
-    hype: "Your IToolbox ID. One sign-in for Bantay and every module of the platform.",
+    hype: "Your IToolbox ID. One sign-in for BantAI and every module of the platform.",
     detail: "More than a login — a digital identity built for IToolbox. Your role decides what you can do, from reading an action brief to running an investigation to managing access, all from one accessible profile.",
   },
-  bantay: {
+  bantai: {
     num: "02",
-    hype: "Ask why. Bantay answers with the evidence.",
-    detail: "Bantay is the conversational agent at the heart of the platform. Ask it a question and it plans an investigation, queries every source in place through Zetaris, and cites the bulletin, hazard layer, and database rows behind each claim — no answer without evidence.",
+    hype: "Ask BantAI. Accessible information, faster responses, the evidence behind every answer.",
+    detail: "BantAI — from bantay, Filipino for “guard” — is the AI chat assistant and knowledge base at the heart of the platform, built for public- and private-sector teams. Ask in English or Filipino: it plans an investigation, queries every source in place through Zetaris, and cites the rows behind each claim — no answer without evidence.",
   },
   autonomous: {
     num: "03",
-    hype: "Signal raised. Sites scored. Actions drafted — the manager approves.",
-    detail: "When a PAGASA bulletin puts company sites under a wind signal, Bantay scores each site's exposure and drafts actions: close early, pre-stock essentials, move stock out of flood zones, reschedule deliveries. A skeptic agent sends back any action whose evidence is thin, and nothing goes out until the manager approves.",
+    hype: "From insight to action — orchestrated, automated, approved by people.",
+    detail: "Intelligent workflow orchestration and automation. When conditions change — heavy rain ahead, a storm signal raised — BantAI drafts the response: tasks, notices, and schedule changes, each routed to the right person. A skeptic agent sends back any step whose evidence is thin, and nothing goes out until a person approves.",
   },
   intelligence: {
     num: "04",
-    hype: "Query in place. Bulletins, hazard maps, and branch data — no new warehouse.",
-    detail: "The Zetaris AI Data Harness federates every source Bantay reads — PAGASA bulletins, Project NOAH flood, landslide, and storm-surge hazard, the branch and inventory database, delivery schedules — so the agent queries each one where it lives, under governance, with nothing copied.",
+    hype: "Predictive insights and automated reports — timely information, before it's needed.",
+    detail: "Advanced intelligence, predictive analytics, and automated insights. The Zetaris AI Data Harness federates every source BantAI reads — live weather today; PAGASA bulletins, Project NOAH hazard maps, and public data next — so BantAI queries each one where it lives, under local governance, with nothing copied.",
   },
   tracker: {
     num: "05",
@@ -120,12 +120,12 @@ const SLIDE_EXTRAS: Record<string, { num: string; hype: string; detail: string }
   secure: {
     num: "06",
     hype: "Governed by design — every session, role, and query checked.",
-    detail: "Signed sessions and role-based access across every module, plus a read-only SQL guard between Bantay and your data: every query the agent writes is checked before it reaches Zetaris. Bantay supports business-continuity decisions and defers to PAGASA, NDRRMC, and LGU advisories.",
+    detail: "Signed sessions and role-based access across every module, plus a read-only SQL guard between BantAI and your data: every query the agent writes is checked before it reaches Zetaris. BantAI supports business-continuity decisions and defers to PAGASA, NDRRMC, and LGU advisories.",
   },
   docs: {
     num: "07",
-    hype: "One place. All docs. Bantay and the platform — organized and always current.",
-    detail: "The documentation hub for Bantay and the IToolbox platform — user guides, the API reference, the agent architecture, and the storm-run SOPs. Admin-curated, with access by role.",
+    hype: "One place. All docs. BantAI and the platform — organized and always current.",
+    detail: "The documentation hub for BantAI and the IToolbox platform — user guides, the API reference, the agent architecture, and the storm-run SOPs. Admin-curated, with access by role.",
   },
 };
 
@@ -296,12 +296,12 @@ export default function LandingPage() {
 
       {/* ── HERO ── */}
       <section className="relative max-w-4xl mx-auto px-5 pt-20 pb-16 text-center">
-        {/* Bantay hero card */}
+        {/* BantAI hero card */}
         <div className="animate-float mb-8">
           <div className="rounded-3xl shadow-2xl overflow-hidden ring-1 ring-white/10 mx-auto max-w-md">
             <img
-              src="/icons/bantay.jpg"
-              alt="Bantay"
+              src="/icons/bantai.jpg"
+              alt="BantAI"
               className="w-full h-auto object-cover"
             />
           </div>
@@ -309,10 +309,10 @@ export default function LandingPage() {
 
         {/* Title */}
         <h1 className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-6">
-          <span className="text-itoolbox-red">Bantay</span>
+          <span className="text-itoolbox-red">BantAI</span>
           <br />
-          {/* A long line at the 7xl of "Bantay" fills three lines and pushes the CTAs below the fold. */}
-          <span className="block mt-3 text-3xl sm:text-5xl text-balance text-green-500">The Typhoon-Operations Agent That Explains Why</span>
+          {/* A long line at the 7xl of "BantAI" fills three lines and pushes the CTAs below the fold. */}
+          <span className="block mt-3 text-3xl sm:text-5xl text-balance text-green-500">The AI Assistant That Explains Why</span>
         </h1>
 
         <p className="text-sm sm:text-base text-white/40 mb-10 tracking-widest font-medium uppercase">

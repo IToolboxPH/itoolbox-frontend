@@ -116,7 +116,7 @@ const DEFAULT_PAGE_ID = "account";
 
 const PAGE_TEXT_CLS: Record<string, string> = {
   account:      "text-blue-500",
-  bantay:       "text-orange-500",
+  bantai:       "text-orange-500",
   autonomous:   "text-green-500",
   intelligence: "text-purple-500",
   tracker:      "text-pink-500",
@@ -151,19 +151,19 @@ function SignInBanner({ onSignIn, pageName }: { onSignIn: () => void; pageName: 
   );
 }
 
-/* ── Bantay teaser card (mascot + speech bubble + mini chat input) ── */
-function BantayTeaser({ onOpenBantay, onSignIn, inputRef }: { onOpenBantay: () => void; onSignIn?: () => void; inputRef?: React.RefObject<HTMLInputElement | null> }) {
+/* ── BantAI teaser card (mascot + speech bubble + mini chat input) ── */
+function BantAITeaser({ onOpenBantAI, onSignIn, inputRef }: { onOpenBantAI: () => void; onSignIn?: () => void; inputRef?: React.RefObject<HTMLInputElement | null> }) {
   const router = useRouter();
   const [input, setInput] = useState("");
   const isLoggedIn = !!useStoredAuth().token;
 
-  // A question asked here runs on the full Bantay page, with its evidence trail.
+  // A question asked here runs on the full BantAI page, with its evidence trail.
   function handleSend(e: React.FormEvent) {
     e.preventDefault();
     if (!isLoggedIn) return;
     const text = input.trim();
     if (!text) return;
-    router.push(`/bantay?q=${encodeURIComponent(text)}`);
+    router.push(`/bantai?q=${encodeURIComponent(text)}`);
   }
 
   return (
@@ -172,18 +172,18 @@ function BantayTeaser({ onOpenBantay, onSignIn, inputRef }: { onOpenBantay: () =
       <div className="relative mb-3">
         <div className="bg-white rounded-2xl px-4 py-2.5 shadow-lg">
           <p className="text-gray-900 text-sm font-semibold text-center leading-snug">
-            {isLoggedIn ? "How can I help you?" : "Sign in to chat with Bantay"}
+            {isLoggedIn ? "How can I help you?" : "Sign in to chat with BantAI"}
           </p>
         </div>
         <div className="absolute left-1/2 -bottom-[5px] -translate-x-1/2 w-3 h-3 bg-white rotate-45"/>
       </div>
 
-      <img src="/icons/bantay.jpg" alt="Bantay AI Assistant"
+      <img src="/icons/bantai.jpg" alt="BantAI AI Assistant"
         className="w-56 h-56 object-cover rounded-3xl shadow-2xl mb-3"/>
 
       <div className="bg-[#5a0e0e] rounded-2xl rounded-tl-sm px-4 py-3 mb-2 w-full shadow-lg">
         <p className="text-white text-xs text-center leading-relaxed">
-          Hello! 👋 I&apos;m <strong>Bantay</strong>, your Virtual Assistant.{" "}
+          Hello! 👋 I&apos;m <strong>BantAI</strong>, your Virtual Assistant.{" "}
           {isLoggedIn ? "Ask me why below:" : "Sign in to unlock full AI assistance."}
         </p>
       </div>
@@ -195,10 +195,10 @@ function BantayTeaser({ onOpenBantay, onSignIn, inputRef }: { onOpenBantay: () =
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask Bantay anything…"
+              placeholder="Ask BantAI anything…"
               className="bg-transparent text-gray-900 dark:text-white text-xs flex-1 outline-none placeholder-gray-400 dark:placeholder-white/40 min-w-0"
             />
-            <button type="submit" aria-label="Send to Bantay"
+            <button type="submit" aria-label="Send to BantAI"
               className="w-7 h-7 rounded-full flex items-center justify-center bg-orange-600 hover:bg-orange-500 transition-colors shrink-0">
               <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
@@ -207,16 +207,16 @@ function BantayTeaser({ onOpenBantay, onSignIn, inputRef }: { onOpenBantay: () =
           </div>
         </form>
       ) : (
-        <button type="button" onClick={onSignIn ?? onOpenBantay}
+        <button type="button" onClick={onSignIn ?? onOpenBantAI}
           className="w-full mb-3 flex items-center justify-center gap-2 bg-orange-600/10 hover:bg-orange-600/20 border border-orange-500/30 rounded-full px-4 py-2.5 transition-colors">
           <svg className="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
           </svg>
-          <span className="text-orange-400 text-xs font-bold">Sign in to Ask Bantay</span>
+          <span className="text-orange-400 text-xs font-bold">Sign in to Ask BantAI</span>
         </button>
       )}
 
-      <button type="button" onClick={onOpenBantay}
+      <button type="button" onClick={onOpenBantAI}
         className="flex items-center gap-1.5 bg-red-500/10 border border-red-500/30 rounded-full px-2.5 py-1 hover:bg-red-500/20 transition-colors">
         <div className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"/>
         <span className="text-red-400 text-[10px] font-bold">Open full app ↗</span>
@@ -228,14 +228,14 @@ function BantayTeaser({ onOpenBantay, onSignIn, inputRef }: { onOpenBantay: () =
 /* ── Page 1: Account — login form ──────────────────────────────── */
 function AccountPage({
   email, setEmail, password, setPassword,
-  error, loading, handleSubmit, onOpenBantay, bantayInputRef,
+  error, loading, handleSubmit, onOpenBantAI, bantaiInputRef,
 }: {
   email: string; setEmail: (v: string) => void;
   password: string; setPassword: (v: string) => void;
   error: string; loading: boolean;
   handleSubmit: (e: React.FormEvent) => void;
-  onOpenBantay: () => void;
-  bantayInputRef?: React.RefObject<HTMLInputElement | null>;
+  onOpenBantAI: () => void;
+  bantaiInputRef?: React.RefObject<HTMLInputElement | null>;
 }) {
   const branding = useBranding();
   const [showPw, setShowPw] = useState(false);
@@ -292,7 +292,7 @@ function AccountPage({
                   <LogoPill size="h-6"/>
                 </div>
                 <div className="rounded-xl mb-3 h-32 overflow-hidden">
-                  <img src="/icons/bantay.jpg" alt="Bantay" className="w-full h-full object-cover"/>
+                  <img src="/icons/bantai.jpg" alt="BantAI" className="w-full h-full object-cover"/>
                 </div>
 
                 {isLoggedIn ? (
@@ -394,9 +394,9 @@ function AccountPage({
             </div>
           </div>{/* end badge card column */}
 
-          {/* Right: BantayTeaser */}
+          {/* Right: BantAITeaser */}
           <div className="flex-1 flex flex-col items-center pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-gray-200 dark:border-white/[0.05] md:pl-8 w-full">
-            <BantayTeaser onOpenBantay={onOpenBantay} inputRef={bantayInputRef}/>
+            <BantAITeaser onOpenBantAI={onOpenBantAI} inputRef={bantaiInputRef}/>
           </div>
 
         </div>{/* end two-column */}
@@ -405,9 +405,9 @@ function AccountPage({
   );
 }
 
-/* ── Page 2: Autonomous Typhoon-Operation Agent preview ────────── */
-// The loop one storm run goes through (see the Bantay brief); the preview shows
-// its shape, not live state.
+/* ── Page 2: Intelligent Workflow Automation preview ───────────── */
+// The first workflow is storm response: the loop one storm run goes through.
+// The preview shows its shape, not live state.
 const RUN_STEPS = [
   { step: "Detect",       text: "A new PAGASA bulletin touches provinces with company sites" },
   { step: "Plan",         text: "Which sites, hazards, stock, and trips to check" },
@@ -418,10 +418,10 @@ const RUN_STEPS = [
 ];
 
 function AutonomousPage({
-  onOpenBantay, bantayInputRef, onSignIn,
+  onOpenBantAI, bantaiInputRef, onSignIn,
 }: {
-  onOpenBantay: () => void;
-  bantayInputRef?: React.RefObject<HTMLInputElement | null>;
+  onOpenBantAI: () => void;
+  bantaiInputRef?: React.RefObject<HTMLInputElement | null>;
   onSignIn: () => void;
 }) {
   return (
@@ -438,7 +438,7 @@ function AutonomousPage({
             </div>
             <div>
               <p className="text-gray-900 dark:text-white font-black text-sm">Storm Operations</p>
-              <p className="text-gray-400 dark:text-white/40 text-[10px] leading-tight">Detect · Alert · Recommend<br/>IToolbox · Bantay</p>
+              <p className="text-gray-400 dark:text-white/40 text-[10px] leading-tight">Detect · Alert · Recommend<br/>IToolbox · BantAI</p>
             </div>
           </div>
           <div className="flex flex-col items-end gap-1 shrink-0">
@@ -451,7 +451,7 @@ function AutonomousPage({
           </div>
         </div>
 
-        <SignInBanner onSignIn={onSignIn} pageName="Autonomous Typhoon-Operation Agent"/>
+        <SignInBanner onSignIn={onSignIn} pageName="BantAI Intelligent Workflow Automation"/>
 
         {/* One storm run, step by step */}
         <div className="bg-white dark:bg-white/[0.04] border border-gray-200 dark:border-white/10 rounded-xl p-4">
@@ -478,29 +478,29 @@ function AutonomousPage({
         </div>
 
         <div className="pt-3 border-t border-gray-200 dark:border-white/[0.05]">
-          <BantayTeaser onOpenBantay={onOpenBantay} onSignIn={onSignIn} inputRef={bantayInputRef}/>
+          <BantAITeaser onOpenBantAI={onOpenBantAI} onSignIn={onSignIn} inputRef={bantaiInputRef}/>
         </div>
       </div>
     </div>
   );
 }
 
-/* ── Page 3: Intelligence & Analytics preview ──────────────────── */
-// The sources in the Bantay data plan. Company data is synthetic and labelled
-// as such; storm and hazard data are real.
+/* ── Page 3: Strategic Intelligence preview ────────────────────── */
+// BantAI's data plan (itoolbox-data-platform's DATA_SOURCES.md). Every source is
+// public; the weather source is live, the rest come next.
 const DATA_PLAN = [
-  { name: "PAGASA bulletins (BagyoAPI)",          join: "Province (PSGC)", real: true  },
-  { name: "Project NOAH flood, landslide, surge", join: "Site ID",         real: true  },
-  { name: "Branches, DCs, staff, inventory",      join: "Site ID, SKU",    real: false },
-  { name: "Delivery schedule",                    join: "Site ID, date",   real: false },
-  { name: "Continuity SOP, insurance terms",      join: "Site type",       real: false },
+  { name: "OpenWeather: weather, forecasts, air quality", join: "City",            live: true  },
+  { name: "PAGASA tropical cyclone bulletins",            join: "Province (PSGC)", live: false },
+  { name: "Project NOAH flood, landslide, surge",         join: "City, province",  live: false },
+  { name: "USGS earthquakes, GDACS alerts",               join: "Location",        live: false },
+  { name: "PSGC codes, population (PSA, HDX)",            join: "PSGC code",       live: false },
 ];
 
 function IntelligencePage({
-  onOpenBantay, bantayInputRef, onSignIn,
+  onOpenBantAI, bantaiInputRef, onSignIn,
 }: {
-  onOpenBantay: () => void;
-  bantayInputRef?: React.RefObject<HTMLInputElement | null>;
+  onOpenBantAI: () => void;
+  bantaiInputRef?: React.RefObject<HTMLInputElement | null>;
   onSignIn: () => void;
 }) {
   const isLoggedIn = !!useStoredAuth().token;
@@ -520,8 +520,8 @@ function IntelligencePage({
               🤖
             </div>
             <div>
-              <p className="text-gray-900 dark:text-white font-black text-sm">Intelligence & Analytics</p>
-              <p className="text-purple-500 dark:text-purple-400/70 text-[10px] leading-tight">Zetaris AI Data Harness<br/>IToolbox · Bantay</p>
+              <p className="text-gray-900 dark:text-white font-black text-sm">BantAI Strategic Intelligence</p>
+              <p className="text-purple-500 dark:text-purple-400/70 text-[10px] leading-tight">Zetaris AI Data Harness<br/>IToolbox · BantAI</p>
             </div>
           </div>
           <div className="flex items-center gap-1.5 shrink-0">
@@ -532,19 +532,19 @@ function IntelligencePage({
             {isLoggedIn && (
               <a href="/intelligence"
                 className="flex items-center gap-1.5 bg-purple-500/10 border border-purple-500/30 rounded-full px-2.5 py-1 hover:bg-purple-500/20 transition-colors">
-                <span className="text-purple-400 text-[10px] font-bold">Open Intelligence & Analytics ↗</span>
+                <span className="text-purple-400 text-[10px] font-bold">Open BantAI Strategic Intelligence ↗</span>
               </a>
             )}
           </div>
         </div>
 
-        <SignInBanner onSignIn={onSignIn} pageName="Intelligence & Analytics"/>
+        <SignInBanner onSignIn={onSignIn} pageName="BantAI Strategic Intelligence"/>
 
         {/* KPI cards */}
         <div className="grid grid-cols-3 gap-2">
           {[
-            { value: "5", unit: "",  label: "Sources in the plan",  color: "#a855f7" },
-            { value: "2", unit: "",  label: "Real public datasets", color: "#22c55e" },
+            { value: String(DATA_PLAN.length), unit: "", label: "Sources in the plan", color: "#a855f7" },
+            { value: String(DATA_PLAN.filter((d) => d.live).length), unit: "", label: "Live now", color: "#22c55e" },
             { value: "0", unit: "",  label: "Copies made",          color: "#f59e0b" },
           ].map((k) => (
             <div key={k.label} className="bg-white dark:bg-white/[0.04] border border-gray-200 dark:border-white/10 rounded-xl p-3 text-center">
@@ -565,9 +565,9 @@ function IntelligencePage({
               <span className="text-gray-500 dark:text-white/60 text-[11px] flex-1">{d.name}</span>
               <span className="text-gray-300 dark:text-white/25 text-[10px] font-mono hidden sm:block">{d.join}</span>
               <span className={`text-[9px] font-black uppercase tracking-widest rounded-full px-1.5 py-0.5 border ${
-                d.real ? "text-green-500 dark:text-green-400 border-green-500/30" : "text-gray-400 dark:text-white/40 border-gray-200 dark:border-white/10"
+                d.live ? "text-green-500 dark:text-green-400 border-green-500/30" : "text-gray-400 dark:text-white/40 border-gray-200 dark:border-white/10"
               }`}>
-                {d.real ? "Real" : "Synthetic"}
+                {d.live ? "Live" : "Next"}
               </span>
             </div>
           ))}
@@ -580,9 +580,9 @@ function IntelligencePage({
           ))}
         </div>
 
-        {/* Bantay */}
+        {/* BantAI */}
         <div className="pt-3 border-t border-gray-200 dark:border-white/[0.05]">
-          <BantayTeaser onOpenBantay={onOpenBantay} onSignIn={onSignIn} inputRef={bantayInputRef}/>
+          <BantAITeaser onOpenBantAI={onOpenBantAI} onSignIn={onSignIn} inputRef={bantaiInputRef}/>
         </div>
       </div>
     </div>
@@ -591,10 +591,10 @@ function IntelligencePage({
 
 /* ── Page 4: Security Settings preview ─────────────────────────── */
 function SecurePage({
-  onOpenBantay, bantayInputRef, onSignIn,
+  onOpenBantAI, bantaiInputRef, onSignIn,
 }: {
-  onOpenBantay: () => void;
-  bantayInputRef?: React.RefObject<HTMLInputElement | null>;
+  onOpenBantAI: () => void;
+  bantaiInputRef?: React.RefObject<HTMLInputElement | null>;
   onSignIn: () => void;
 }) {
   const isLoggedIn = !!useStoredAuth().token;
@@ -692,28 +692,28 @@ function SecurePage({
           </div>
         )}
 
-        {/* Bantay */}
+        {/* BantAI */}
         <div className="pt-3 border-t border-gray-200 dark:border-white/[0.05]">
-          <BantayTeaser onOpenBantay={onOpenBantay} onSignIn={onSignIn} inputRef={bantayInputRef}/>
+          <BantAITeaser onOpenBantAI={onOpenBantAI} onSignIn={onSignIn} inputRef={bantaiInputRef}/>
         </div>
       </div>
     </div>
   );
 }
 
-/* ── Page 5: Ask Bantay ────────────────────────────────────────── */
-function AskBantayPage({ onSignIn }: { onSignIn: () => void }) {
+/* ── Page 5: Ask BantAI ────────────────────────────────────────── */
+function AskBantAIPage({ onSignIn }: { onSignIn: () => void }) {
   const router = useRouter();
   const [input, setInput] = useState("");
   const isLoggedIn = !!useStoredAuth().token;
 
-  // Questions run on the full Bantay page, where the investigation streams.
+  // Questions run on the full BantAI page, where the investigation streams.
   function handleSend(e: React.FormEvent) {
     e.preventDefault();
     if (!isLoggedIn) return;
     const text = input.trim();
     if (!text) return;
-    router.push(`/bantay?q=${encodeURIComponent(text)}`);
+    router.push(`/bantai?q=${encodeURIComponent(text)}`);
   }
 
   return (
@@ -724,13 +724,13 @@ function AskBantayPage({ onSignIn }: { onSignIn: () => void }) {
       <div className="relative z-10 flex flex-col flex-1 min-h-0">
         <div className="shrink-0 flex items-center gap-3 px-4 py-3 border-b border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04]">
           <div className="w-10 h-10 rounded-full overflow-hidden bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center shrink-0">
-            <img src="/icons/bantay.jpg" alt="Ask Bantay" className="w-full h-full object-cover"/>
+            <img src="/icons/bantai.jpg" alt="Ask BantAI" className="w-full h-full object-cover"/>
           </div>
           <div>
-            <p className="text-gray-900 dark:text-white font-black text-sm">Ask Bantay</p>
+            <p className="text-gray-900 dark:text-white font-black text-sm">Ask BantAI</p>
             <div className="flex items-center gap-1">
               <div className="w-1.5 h-1.5 rounded-full bg-orange-400"/>
-              <span className="text-orange-400 text-[10px] font-medium">Typhoon-Operations Agent</span>
+              <span className="text-orange-400 text-[10px] font-medium">AI Chat Assistant</span>
             </div>
           </div>
           {!isLoggedIn && (
@@ -744,7 +744,7 @@ function AskBantayPage({ onSignIn }: { onSignIn: () => void }) {
         <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3">
           <div className="bg-white dark:bg-white/[0.06] border border-gray-200 dark:border-white/10 rounded-2xl rounded-tl-sm p-4 max-w-[95%] sm:max-w-[90%]">
             <p className="text-gray-700 dark:text-white text-xs leading-relaxed">
-              Hello! 👋 I&apos;m <strong className="text-orange-500 dark:text-orange-300">Bantay</strong>, your AI assistant. Ask me why — I&apos;ll investigate every source and show you the evidence behind the answer.
+              Hello! 👋 I&apos;m <strong className="text-orange-500 dark:text-orange-300">BantAI</strong>, your AI assistant. Ask me why — I&apos;ll investigate every source and show you the evidence behind the answer.
             </p>
           </div>
         </div>
@@ -755,7 +755,7 @@ function AskBantayPage({ onSignIn }: { onSignIn: () => void }) {
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask Bantay anything…"
+                placeholder="Ask BantAI anything…"
                 className="bg-transparent text-gray-900 dark:text-white text-xs flex-1 outline-none placeholder-gray-400 dark:placeholder-white/20 min-w-0"
               />
               <button type="submit" aria-label="Send" disabled={!input.trim()}
@@ -773,7 +773,7 @@ function AskBantayPage({ onSignIn }: { onSignIn: () => void }) {
               <svg className="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
               </svg>
-              <span className="text-orange-400 text-xs font-bold">Sign in to Ask Bantay</span>
+              <span className="text-orange-400 text-xs font-bold">Sign in to Ask BantAI</span>
             </button>
           </div>
         )}
@@ -784,10 +784,10 @@ function AskBantayPage({ onSignIn }: { onSignIn: () => void }) {
 
 /* ── Page 6: Project Management preview ────────────────────────── */
 function ProjectTrackPage({
-  onOpenBantay, bantayInputRef, onSignIn,
+  onOpenBantAI, bantaiInputRef, onSignIn,
 }: {
-  onOpenBantay: () => void;
-  bantayInputRef?: React.RefObject<HTMLInputElement | null>;
+  onOpenBantAI: () => void;
+  bantaiInputRef?: React.RefObject<HTMLInputElement | null>;
   onSignIn: () => void;
 }) {
   const isLoggedIn = !!useStoredAuth().token;
@@ -853,9 +853,9 @@ function ProjectTrackPage({
           ))}
         </div>
 
-        {/* Bantay */}
+        {/* BantAI */}
         <div className="pt-3 border-t border-gray-200 dark:border-white/[0.05]">
-          <BantayTeaser onOpenBantay={onOpenBantay} onSignIn={onSignIn} inputRef={bantayInputRef}/>
+          <BantAITeaser onOpenBantAI={onOpenBantAI} onSignIn={onSignIn} inputRef={bantaiInputRef}/>
         </div>
       </div>
     </div>
@@ -873,11 +873,11 @@ export default function LoginPage() {
 
   const [currentPage, setCurrentPage] = useState(DEFAULT_PAGE_ID);
   const [menuOpen, setMenuOpen]       = useState(false);
-  const accountBantayInputRef      = useRef<HTMLInputElement>(null);
-  const autonomousBantayInputRef   = useRef<HTMLInputElement>(null);
-  const intelligenceBantayInputRef = useRef<HTMLInputElement>(null);
-  const trackerBantayInputRef      = useRef<HTMLInputElement>(null);
-  const secureBantayInputRef       = useRef<HTMLInputElement>(null);
+  const accountBantAIInputRef      = useRef<HTMLInputElement>(null);
+  const autonomousBantAIInputRef   = useRef<HTMLInputElement>(null);
+  const intelligenceBantAIInputRef = useRef<HTMLInputElement>(null);
+  const trackerBantAIInputRef      = useRef<HTMLInputElement>(null);
+  const secureBantAIInputRef       = useRef<HTMLInputElement>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -1009,7 +1009,7 @@ export default function LoginPage() {
         <div
           key={currentPage}
           className={`absolute inset-0 [animation:pageIn_0.25s_ease-out_both] ${
-            currentPage === "bantay" ? "flex flex-col overflow-hidden" : "overflow-y-auto"
+            currentPage === "bantai" ? "flex flex-col overflow-hidden" : "overflow-y-auto"
           }`}
         >
           {currentPage === "account" && (
@@ -1018,15 +1018,15 @@ export default function LoginPage() {
               password={password} setPassword={setPassword}
               error={error} loading={loading}
               handleSubmit={handleSubmit}
-              onOpenBantay={() => goToPage("bantay")}
-              bantayInputRef={accountBantayInputRef}
+              onOpenBantAI={() => goToPage("bantai")}
+              bantaiInputRef={accountBantAIInputRef}
             />
           )}
-          {currentPage === "bantay" && <AskBantayPage onSignIn={() => goToPage("account")}/>}
-          {currentPage === "autonomous" && <AutonomousPage onOpenBantay={() => goToPage("bantay")} bantayInputRef={autonomousBantayInputRef} onSignIn={() => goToPage("account")}/>}
-          {currentPage === "intelligence" && <IntelligencePage onOpenBantay={() => goToPage("bantay")} bantayInputRef={intelligenceBantayInputRef} onSignIn={() => goToPage("account")}/>}
-          {currentPage === "tracker" && <ProjectTrackPage onOpenBantay={() => goToPage("bantay")} bantayInputRef={trackerBantayInputRef} onSignIn={() => goToPage("account")}/>}
-          {currentPage === "secure" && <SecurePage onOpenBantay={() => goToPage("bantay")} bantayInputRef={secureBantayInputRef} onSignIn={() => goToPage("account")}/>}
+          {currentPage === "bantai" && <AskBantAIPage onSignIn={() => goToPage("account")}/>}
+          {currentPage === "autonomous" && <AutonomousPage onOpenBantAI={() => goToPage("bantai")} bantaiInputRef={autonomousBantAIInputRef} onSignIn={() => goToPage("account")}/>}
+          {currentPage === "intelligence" && <IntelligencePage onOpenBantAI={() => goToPage("bantai")} bantaiInputRef={intelligenceBantAIInputRef} onSignIn={() => goToPage("account")}/>}
+          {currentPage === "tracker" && <ProjectTrackPage onOpenBantAI={() => goToPage("bantai")} bantaiInputRef={trackerBantAIInputRef} onSignIn={() => goToPage("account")}/>}
+          {currentPage === "secure" && <SecurePage onOpenBantAI={() => goToPage("bantai")} bantaiInputRef={secureBantAIInputRef} onSignIn={() => goToPage("account")}/>}
         </div>
       </div>
 

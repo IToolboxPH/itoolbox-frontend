@@ -7,9 +7,9 @@
 #   (cd ../itoolbox-backend && docker compose up -d)   # api :8100
 #   docker compose up --build -d
 #
-# name: Docker Desktop lists the IToolbox stacks together, apart from PLDT/Smart's,
-# by the "itoolbox_" prefix: itoolbox_frontend, itoolbox_data-platform,
-# itoolbox_zetaris-platform and itoolbox_backend. Each repo is its own project, so
+# name: Docker Desktop lists the IToolbox stacks together by the "itoolbox_" prefix:
+# itoolbox_frontend, itoolbox_data-platform, itoolbox_zetaris-platform and
+# itoolbox_backend. Each repo is its own project, so
 # `docker compose down` here never touches the others. The service is named after
 # its container.
 name: itoolbox_frontend

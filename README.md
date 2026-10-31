@@ -20,27 +20,30 @@ talks to it over HTTP, through the generated types.
 
 ## Layout
 
-The UI follows the nm-web design: a public landing page, a sign-in portal that
-previews each module, a dashboard, and one workspace per module. Every module's
+The UI has a public landing page, a sign-in portal that previews each module, a
+dashboard, and one workspace per module. The heart of it is BantAI, IToolbox's AI
+chat assistant, and its three pillars: the AI knowledge base and conversational
+agent (`bantai/`), intelligent workflow automation (`autonomous/`), and strategic
+intelligence with predictive insights and automated reports (`intelligence/`). Every module's
 name, tagline, colour, icon and route comes from `lib/platform-apps.ts`, so the
 landing carousel, ticker, hamburger menus and dashboard cards stay in step.
 
 ```text
 app/
-  page.tsx                Landing: Bantay hero, module ticker, module carousel
+  page.tsx                Landing: BantAI hero, module ticker, module carousel
   (auth)/login/           Sign-in portal with a preview page per module
-  dashboard/              Module cards and your recent Bantay investigations
+  dashboard/              Module cards and your recent BantAI investigations
   account/                Account Profile: ID badge, details, change password
-  bantay/                 Ask Bantay: the investigating agent (/bantay?id=… replays a run)
-  autonomous/             Autonomous Typhoon-Operation Agent: the storm-run overview
-  intelligence/           Intelligence & Analytics; sources/ browses Zetaris
+  bantai/                 Ask BantAI: the investigating agent (/bantai?id=… replays a run)
+  autonomous/             BantAI Intelligent Workflow Automation: storm response first
+  intelligence/           BantAI Strategic Intelligence; sources/ browses Zetaris
   tracker/                Project Management (sub-apps planned; no backend routes yet)
   security-settings/      Admin: users, roles, access matrix
   docs/  support/
   agent/  sources/        Redirects from the old routes
 components/
   agent/                  Model picker, investigation trail, evidence, answer
-  bantay-widget.tsx       Floating Ask Bantay launcher on module pages
+  bantai-widget.tsx       Floating Ask BantAI launcher on module pages
   ui/                     shadcn/ui primitives
 lib/
   platform-apps.ts        The module list, and who may open each module
@@ -83,14 +86,14 @@ Copy `.env.example` to `.env.local` first. Only `NEXT_PUBLIC_*` values belong in
 this repo — they ship to the browser. Model API keys, the JWT secret and the
 Zetaris credentials live in `itoolbox-backend`, never here.
 
-## The Bantay page
+## The BantAI page
 
 `POST /api/v1/agent/ask` streams the investigation as server-sent events.
 `lib/sse.ts` reads them with `fetch` (EventSource can't POST or send the
 Authorization header), and `components/agent/investigation.ts` folds each event
 into the view. The same reducer replays a stored investigation from
 `GET /api/v1/agent/investigations/{id}`, so a past run renders exactly as it did
-live, and `/bantay?id=…` links can be shared. `/bantay?q=…` starts an
+live, and `/bantai?id=…` links can be shared. `/bantai?q=…` starts an
 investigation; the floating widget and the sign-in portal hand questions over
 that way.
 
