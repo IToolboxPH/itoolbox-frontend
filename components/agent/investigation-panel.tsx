@@ -18,7 +18,8 @@ const STATUS_STYLE: Record<InvestigationView["status"], string> = {
   cancelled: "bg-muted text-muted-foreground",
 };
 
-export function InvestigationPanel({ view }: { view: InvestigationView }) {
+/** `hideQuestion` drops the heading where the question is already on screen, as in a chat bubble. */
+export function InvestigationPanel({ view, hideQuestion = false }: { view: InvestigationView; hideQuestion?: boolean }) {
   const [highlight, setHighlight] = useState<string | null>(null);
   const running = view.status === "running";
 
@@ -32,7 +33,7 @@ export function InvestigationPanel({ view }: { view: InvestigationView }) {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-start gap-3">
-        <h2 className="min-w-0 flex-1 text-lg font-semibold">{view.question}</h2>
+        {hideQuestion ? <span className="flex-1"/> : <h2 className="min-w-0 flex-1 text-lg font-semibold">{view.question}</h2>}
         <div className="flex items-center gap-2 text-xs">
           {view.modelLabel && <span className="rounded border border-border px-2 py-0.5">{view.modelLabel}</span>}
           <span className={cn("flex items-center gap-1 rounded px-2 py-0.5 font-medium capitalize", STATUS_STYLE[view.status])}>

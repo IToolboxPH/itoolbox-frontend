@@ -66,3 +66,27 @@ body {
   100% { box-shadow: 0 0 0 0 hsl(var(--accent) / 0); }
 }
 .cite-flash { animation: cite-flash 1.6s ease-out; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-ticker { animation: ticker 30s linear infinite; }
+
+.green-glow-blob { background: radial-gradient(circle, #22c55e 0%, transparent 70%); }
+
+/* Landing page per-slide glow overlays, keyed by PLATFORM_APPS key */
+.slide-glow-account      { background: radial-gradient(ellipse 60% 50% at 30% 40%, #3b82f618 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #3b82f60f 0%, transparent 70%); }
+.slide-glow-bantay       { background: radial-gradient(ellipse 60% 50% at 30% 40%, #f9731618 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #f973160f 0%, transparent 70%); }
+.slide-glow-autonomous   { background: radial-gradient(ellipse 60% 50% at 30% 40%, #22c55e18 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #22c55e0f 0%, transparent 70%); }
+.slide-glow-intelligence { background: radial-gradient(ellipse 60% 50% at 30% 40%, #a855f718 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #a855f70f 0%, transparent 70%); }
+.slide-glow-tracker      { background: radial-gradient(ellipse 60% 50% at 30% 40%, #ec489918 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #ec48990f 0%, transparent 70%); }
+.slide-glow-secure       { background: radial-gradient(ellipse 60% 50% at 30% 40%, #94a3b818 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #94a3b80f 0%, transparent 70%); }
+.slide-glow-docs         { background: radial-gradient(ellipse 60% 50% at 30% 40%, #14b8a618 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 75% 70%, #14b8a60f 0%, transparent 70%); }

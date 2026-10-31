@@ -20,22 +20,38 @@ talks to it over HTTP, through the generated types.
 
 ## Layout
 
+The UI follows the nm-web design: a public landing page, a sign-in portal that
+previews each module, a dashboard, and one workspace per module. Every module's
+name, tagline, colour, icon and route comes from `lib/platform-apps.ts`, so the
+landing carousel, ticker, hamburger menus and dashboard cards stay in step.
+
 ```text
 app/
-  (auth)/login/     Sign-in
-  agent/            Ask Why — the investigating agent
-  sources/          Data sources the agent can see (through Zetaris)
+  page.tsx                Landing: Bantay hero, module ticker, module carousel
+  (auth)/login/           Sign-in portal with a preview page per module
+  dashboard/              Module cards and your recent Bantay investigations
+  account/                Account Profile: ID badge, details, change password
+  bantay/                 Ask Bantay: the investigating agent (/bantay?id=… replays a run)
+  autonomous/             Autonomous Typhoon-Operation Agent: the storm-run overview
+  intelligence/           Intelligence & Analytics; sources/ browses Zetaris
+  tracker/                Project Management (sub-apps planned; no backend routes yet)
+  security-settings/      Admin: users, roles, access matrix
+  docs/  support/
+  agent/  sources/        Redirects from the old routes
 components/
-  agent/            Question form, model picker, investigation trail, evidence, answer
-  ui/               shadcn/ui primitives
+  agent/                  Model picker, investigation trail, evidence, answer
+  bantay-widget.tsx       Floating Ask Bantay launcher on module pages
+  ui/                     shadcn/ui primitives
 lib/
-  api-client.ts     Typed client for every backend route
-  sse.ts            Reads the agent's server-sent event stream
-  auth.ts           Token storage, apiUrl()
-packages/ui/      Shared API contract
+  platform-apps.ts        The module list, and who may open each module
+  nav.ts                  Each module's sub-pages
+  api-client.ts           Typed client for every backend route
+  sse.ts                  Reads the agent's server-sent event stream
+  auth.ts                 Token storage, apiUrl()
+packages/ui/            Shared API contract
   types/
-    api.gen.ts      GENERATED — do not edit
-    index.ts        Curated aliases over the generated schemas
+    api.gen.ts            GENERATED — do not edit
+    index.ts              Curated aliases over the generated schemas
 ```
 
 ## Running locally
@@ -67,14 +83,16 @@ Copy `.env.example` to `.env.local` first. Only `NEXT_PUBLIC_*` values belong in
 this repo — they ship to the browser. Model API keys, the JWT secret and the
 Zetaris credentials live in `itoolbox-backend`, never here.
 
-## The agent page
+## The Bantay page
 
 `POST /api/v1/agent/ask` streams the investigation as server-sent events.
 `lib/sse.ts` reads them with `fetch` (EventSource can't POST or send the
 Authorization header), and `components/agent/investigation.ts` folds each event
 into the view. The same reducer replays a stored investigation from
 `GET /api/v1/agent/investigations/{id}`, so a past run renders exactly as it did
-live, and `/agent?id=…` links can be shared.
+live, and `/bantay?id=…` links can be shared. `/bantay?q=…` starts an
+investigation; the floating widget and the sign-in portal hand questions over
+that way.
 
 Pick **Demo (no LLM)** in the model picker to run a scripted investigation over
 live data: the full event stream, with no model credits spent.

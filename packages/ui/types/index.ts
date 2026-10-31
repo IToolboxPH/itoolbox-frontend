@@ -23,6 +23,12 @@ type Api = components["schemas"];
 export type UserProfile = Api["UserProfileOut"];
 export type TokenResponse = Api["TokenResponse"];
 
+// ── Admin ─────────────────────────────────────────────────────────────────────
+export type CreateUserRequest = Api["CreateUserRequest"];
+export type UpdateUserRequest = Api["UpdateUserRequest"];
+/** The roles the backend accepts, highest first. */
+export type GlobalRole = CreateUserRequest["global_role"];
+
 // ── Data harness (Zetaris) ────────────────────────────────────────────────────
 export type HarnessStatus = Api["HarnessStatus"];
 export type DataSource = Api["SourceOut"];

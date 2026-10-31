@@ -12,6 +12,8 @@ const compat = new FlatCompat({
 const eslintConfig = [
   { ignores: [".next/**", "out/**", "node_modules/**", "packages/ui/types/api.gen.ts", "next-env.d.ts"] },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  // The static export serves images unoptimized, so next/image would add nothing.
+  { rules: { "@next/next/no-img-element": "off" } },
 ];
 
 export default eslintConfig;

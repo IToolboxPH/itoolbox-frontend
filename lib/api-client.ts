@@ -7,6 +7,7 @@ import type {
   AgentEvent,
   AskRequest,
   Column,
+  CreateUserRequest,
   DataSource,
   HarnessStatus,
   InvestigationDetail,
@@ -16,10 +17,11 @@ import type {
   QueryRequest,
   QueryResult,
   Table,
+  UpdateUserRequest,
   UserProfile,
 } from "@itoolbox/ui/types";
 
-import { apiUrl } from "./auth";
+import { apiUrl, clearAuth } from "./auth";
 import { readEventStream } from "./sse";
 
 /** FastAPI returns a string detail, or a list of field errors on 422. */
@@ -49,6 +51,8 @@ function headers(extra?: HeadersInit): HeadersInit {
 
 async function failure(res: Response): Promise<Error> {
   if (res.status === 401 && typeof window !== "undefined") {
+    // The stored token is dead; drop it so the sign-in portal doesn't show a stale session.
+    clearAuth();
     window.location.href = "/login";
     return new Error("Unauthorized");
   }
@@ -74,6 +78,18 @@ export const authApi = {
     request<void>("/api/v1/auth/me/change-password", {
       method: "POST",
       body: JSON.stringify({ current_password, new_password }),
+    }),
+};
+
+// ── Admin ─────────────────────────────────────────────────────────────────────
+export const adminApi = {
+  listUsers: () => request<UserProfile[]>("/api/v1/admin/users"),
+  createUser: (body: CreateUserRequest) =>
+    request<UserProfile>("/api/v1/admin/users", { method: "POST", body: JSON.stringify(body) }),
+  updateUser: (id: string, body: UpdateUserRequest) =>
+    request<UserProfile>(`/api/v1/admin/users/${encodeURIComponent(id)}`, {
+      method: "PATCH",
+      body: JSON.stringify(body),
     }),
 };
 

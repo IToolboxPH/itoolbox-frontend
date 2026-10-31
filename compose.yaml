@@ -7,12 +7,15 @@
 #   (cd ../itoolbox-backend && docker compose up -d)   # api :8100
 #   docker compose up --build -d
 #
-# name: its own project, so `docker compose down` here never touches the
-# backend's containers (which run under "itoolbox").
-name: itoolbox-web
+# name: Docker Desktop lists the IToolbox stacks together, apart from PLDT/Smart's,
+# by the "itoolbox_" prefix: itoolbox_frontend, itoolbox_data-platform,
+# itoolbox_zetaris-platform and itoolbox_backend. Each repo is its own project, so
+# `docker compose down` here never touches the others. The service is named after
+# its container.
+name: itoolbox_frontend
 
 services:
-  web:
+  itoolbox-web:
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,6 +26,7 @@ services:
         # lib/auth.ts's apiUrl() uses the host that served the page on port 8100.
         # Set it when the API is elsewhere, e.g. the host's Tailscale Serve URL.
         NEXT_PUBLIC_API_URL: "${NEXT_PUBLIC_API_URL:-}"
+    image: itoolbox-web
     container_name: itoolbox-web
     ports:
       - "127.0.0.1:${WEB_PORT:-3100}:80"
