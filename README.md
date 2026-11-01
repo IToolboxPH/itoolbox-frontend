@@ -97,8 +97,9 @@ live, and `/bantai?id=…` links can be shared. `/bantai?q=…` starts an
 investigation; the floating widget and the sign-in portal hand questions over
 that way.
 
-Pick **Demo (no LLM)** in the model picker to run a scripted investigation over
-live data: the full event stream, with no model credits spent.
+Every model in the picker is a real LLM: NVIDIA Nemotron (direct, or routed
+through Meterless Nightshift), OpenAI GPT, xAI Grok and Anthropic Claude. A model
+without credentials on the server stays listed as "(not configured)".
 
 ## The API contract
 

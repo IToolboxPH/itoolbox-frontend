@@ -569,7 +569,7 @@ export interface components {
              * Provider
              * @enum {string}
              */
-            provider: "nvidia" | "xai" | "anthropic" | "demo";
+            provider: "nvidia" | "meterless" | "openai" | "xai" | "anthropic";
         };
         /** QueryRequest */
         QueryRequest: {

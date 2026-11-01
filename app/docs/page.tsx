@@ -31,7 +31,7 @@ const SECTIONS = [
     docs: [
       { title: "What BantAI Can Do",       desc: "Capabilities, limits, and how to phrase a good “why” question.",                                  tag: "Guide"     },
       { title: "Reading an Investigation", desc: "The trail, the evidence tables, and how each E1-style citation links an answer to its rows.",      tag: "Guide"     },
-      { title: "Choosing a Model",         desc: "Nemotron, Claude, Grok, or the scripted demo — when to use each.",                                tag: "Reference" },
+      { title: "Choosing a Model",         desc: "Nemotron, Meterless, GPT, Grok, or Claude — when to use each.",                               tag: "Reference" },
       { title: "Agent API",                desc: "POST /api/v1/agent/ask streams an investigation as server-sent events.",                         tag: "API"       },
     ],
   },
