@@ -486,14 +486,15 @@ function AutonomousPage({
 }
 
 /* ── Page 3: Strategic Intelligence preview ────────────────────── */
-// BantAI's data plan (itoolbox-data-platform's DATA_SOURCES.md). Every source is
-// public; the weather source is live, the rest come next.
+// BantAI's data sources (itoolbox-data-platform's DATA_SOURCES.md), each one
+// public and registered in Zetaris. `live: false` marks a planned source.
 const DATA_PLAN = [
-  { name: "OpenWeather: weather, forecasts, air quality", join: "City",            live: true  },
-  { name: "PAGASA tropical cyclone bulletins",            join: "Province (PSGC)", live: false },
-  { name: "Project NOAH flood, landslide, surge",         join: "City, province",  live: false },
-  { name: "USGS earthquakes, GDACS alerts",               join: "Location",        live: false },
-  { name: "PSGC codes, population (PSA, HDX)",            join: "PSGC code",       live: false },
+  { name: "OpenWeather and NASA POWER: weather, forecasts, history", join: "City",            live: true },
+  { name: "PAGASA bulletins and wind signals (BagyoAPI)",             join: "PSGC code",       live: true },
+  { name: "Project NOAH flood, landslide, storm surge",               join: "City",            live: true },
+  { name: "USGS earthquakes, GDACS alerts",                           join: "Nearest city",    live: true },
+  { name: "IBTrACS typhoon tracks since 1951",                        join: "Storm, city",     live: true },
+  { name: "PSGC places, PSA population, OSM facilities",              join: "PSGC code, city", live: true },
 ];
 
 function IntelligencePage({

@@ -12,10 +12,11 @@ import { InvestigationPanel } from "@/components/agent/investigation-panel";
 import { ModelPicker } from "@/components/agent/model-picker";
 import type { InvestigationSummary, ModelInfo, UserProfile } from "@itoolbox/ui/types";
 
-// Each answerable from the sources registered today (WEATHER); add more as sources land.
+// Each answerable from the sources registered today, most of them across several.
 const EXAMPLES = [
   "Which cities should prepare for heavy rain in the next 48 hours, and why?",
-  "Is it raining in Tacloban now, and does that match the forecast?",
+  "How exposed is Tacloban to typhoons and storm surge, and how often has it been hit?",
+  "In Typhoon Inday's latest bulletin, which areas had the highest wind signal, and how many people live in those provinces?",
   "Saan pinakamainit ngayon, at gaano kalakas ang hangin doon?",
 ];
 
