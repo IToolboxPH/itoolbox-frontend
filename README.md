@@ -18,6 +18,13 @@
 The backend (`itoolbox-backend`) is a separate FastAPI service — this repo only
 talks to it over HTTP, through the generated types.
 
+**Status (1 November 2026):**
+
+- Live on the host at port 3100; the team reaches it through Tailscale.
+- `/bantai` answers from five Zetaris sources with cited evidence, on NVIDIA Nemotron.
+- `/autonomous` and `/intelligence` describe the next two pillars.
+- The model picker lists Meterless, GPT, Grok and Claude; they need setup or credits, as itoolbox-backend's README explains.
+
 ## Layout
 
 The UI has a public landing page, a sign-in portal that previews each module, a
