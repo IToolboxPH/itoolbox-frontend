@@ -23,7 +23,7 @@ talks to it over HTTP, through the generated types.
 - Live on the host at port 3100; the team reaches it through Tailscale.
 - `/bantai` answers from five Zetaris sources with cited evidence, on NVIDIA Nemotron.
 - `/autonomous` and `/intelligence` describe the next two pillars.
-- The model picker lists Meterless, GPT, Grok and Claude; they need setup or credits, as itoolbox-backend's README explains.
+- The model picker also lists Nemotron via Meterless, which works while Meterless Nightshift runs on the host, and GPT, Grok and Claude, which need a key or credits, as itoolbox-backend's README explains.
 
 ## Layout
 
