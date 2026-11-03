@@ -23,8 +23,9 @@ services:
       # export, so changing them requires `--build`, not a restart.
       args:
         # Reachable from the BROWSER, not from inside this container. Left unset,
-        # lib/auth.ts's apiUrl() uses the host that served the page on port 8100.
-        # Set it when the API is elsewhere, e.g. the host's Tailscale Serve URL.
+        # lib/auth.ts's apiUrl() uses the scheme and host that served the page, on
+        # port 8100, which also covers the host's Tailscale link. Set it only when
+        # the API runs on another machine.
         NEXT_PUBLIC_API_URL: "${NEXT_PUBLIC_API_URL:-}"
     image: itoolbox-web
     container_name: itoolbox-web

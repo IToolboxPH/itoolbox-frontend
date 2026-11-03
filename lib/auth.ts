@@ -11,13 +11,14 @@ const TOKEN_KEY = "itoolbox_access_token";
 const USER_KEY = "itoolbox_user_profile";
 
 // NEXT_PUBLIC_API_URL is baked in at build time (the static export doesn't read
-// env vars at runtime). When none was baked in, fall back to the host the browser
-// loaded this page from, on the API's default port, so a local or LAN deploy
-// follows IP changes without a rebuild.
+// env vars at runtime). When none was baked in, fall back to the scheme and host
+// the browser loaded this page from, on the API's default port, so a local or LAN
+// deploy follows IP changes without a rebuild, and a page served over HTTPS (the
+// host's Tailscale link) calls the API over HTTPS too.
 export function apiUrl(): string {
   const configured = process.env.NEXT_PUBLIC_API_URL;
   if (configured) return configured.replace(/\/$/, "");
-  if (typeof window !== "undefined") return `http://${window.location.hostname}:8100`;
+  if (typeof window !== "undefined") return `${window.location.protocol}//${window.location.hostname}:8100`;
   return "http://localhost:8100";
 }
 

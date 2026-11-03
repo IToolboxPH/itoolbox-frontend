@@ -18,9 +18,9 @@
 The backend (`itoolbox-backend`) is a separate FastAPI service — this repo only
 talks to it over HTTP, through the generated types.
 
-**Status (1 November 2026):**
+**Status (3 November 2026):**
 
-- Live on the host at port 3100; the team reaches it through Tailscale.
+- Live on the host at port 3100; the team opens it at <https://itoolbox.taildc9975.ts.net> over Tailscale, as itoolbox-backend's [user guide](https://github.com/IToolboxPH/itoolbox-backend/blob/main/docs/USER_GUIDE.md) explains.
 - `/bantai` answers from five Zetaris sources with cited evidence, on NVIDIA Nemotron.
 - `/autonomous` and `/intelligence` describe the next two pillars.
 - The model picker also lists Nemotron via Meterless, which works while Meterless Nightshift runs on the host, and GPT, Grok and Claude, which need a key or credits, as itoolbox-backend's README explains.
@@ -82,11 +82,14 @@ docker compose up --build -d                       # → localhost:3100
 ```
 
 `NEXT_PUBLIC_*` values are baked in at **build** time by the static export, so
-changing which backend the site talks to needs a rebuild, not a restart. When
-the API is somewhere else — a teammate's machine over Tailscale, say — set it:
+changing which backend the site talks to needs a rebuild, not a restart. Left
+unset, the site calls the API on port 8100 of the scheme and host that served the
+page, so one build works at `http://localhost:3100` and at the host's Tailscale
+link. To run the dev server on your own machine against the host's API over
+Tailscale, set it:
 
 ```bash
-NEXT_PUBLIC_API_URL=https://<host>.<tailnet>.ts.net:8443 npm run dev
+NEXT_PUBLIC_API_URL=https://itoolbox.taildc9975.ts.net:8100 npm run dev
 ```
 
 Copy `.env.example` to `.env.local` first. Only `NEXT_PUBLIC_*` values belong in
