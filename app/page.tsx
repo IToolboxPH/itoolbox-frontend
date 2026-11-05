@@ -4,8 +4,29 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { getStoredAuth } from "@/lib/auth";
 import { useBranding, useModuleOverrides } from "@/components/branding-provider";
+import {
+  AboutSection, ContactSection, MissionVisionSection, PartnersSection, ProductsSection, SiteFooter, TeamSection,
+} from "@/components/landing/company-sections";
+import { COMPANY, PRODUCTS } from "@/lib/company";
 import { PLATFORM_APPS, getVisibleApps } from "@/lib/platform-apps";
 import type { UserProfile } from "@itoolbox/ui/types";
+
+/* ── In-page sections the nav links to ───────────────────────────── */
+const NAV_SECTIONS = [
+  { id: "products", label: "Products" },
+  { id: "bantai",   label: "BantAI" },
+  { id: "about",    label: "About" },
+  { id: "team",     label: "Team" },
+  { id: "partners", label: "Partners" },
+  { id: "contact",  label: "Contact" },
+];
+
+function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  e.preventDefault();
+  el.scrollIntoView({ behavior: "smooth" });
+}
 
 /* ── Network node background (matches login portal) ─────────────── */
 function NodeNetwork({ color }: { color: string }) {
@@ -146,7 +167,6 @@ function buildSlides(apps: typeof PLATFORM_APPS) {
 
 /* ── Page ───────────────────────────────────────────────────────── */
 export default function LandingPage() {
-  const branding = useBranding();
   const { moduleContent, moduleVisibility } = useModuleOverrides();
   const SLIDES = useMemo(
     () => buildSlides(getVisibleApps(moduleContent, moduleVisibility)),
@@ -188,7 +208,9 @@ export default function LandingPage() {
   const slide = SLIDES[active];
 
   return (
-    <div className="min-h-screen bg-[#0a0f1e] text-white overflow-x-hidden">
+    // overflow-x-clip, not -hidden: hidden makes this div a scroll container,
+    // and the sticky nav would stop sticking.
+    <div className="min-h-screen bg-[#0a0f1e] text-white overflow-x-clip">
 
       {/* ── Fixed node-network background — color shifts with active slide ── */}
       <div className="pointer-events-none fixed inset-0 z-0">
@@ -197,8 +219,8 @@ export default function LandingPage() {
       </div>
 
       {/* ── NAV ── */}
-      <nav className="relative z-50 border-b border-white/[0.05]">
-        <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
+      <nav className="sticky top-0 z-50 border-b border-white/[0.05] bg-[#0a0f1e]/85 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             {isLoggedIn ? (
               <button type="button" onClick={() => setMenuOpen((o) => !o)} aria-label="Open menu" aria-expanded={menuOpen ? "true" : "false"}
@@ -223,11 +245,19 @@ export default function LandingPage() {
               <PlatformLogo className="h-7 w-auto" />
             </Link>
           </div>
+          <div className="hidden lg:flex items-center gap-6">
+            {NAV_SECTIONS.map((s) => (
+              <a key={s.id} href={`#${s.id}`} onClick={(e) => scrollToSection(e, s.id)}
+                className="text-xs font-bold text-white/50 hover:text-white transition-colors">
+                {s.label}
+              </a>
+            ))}
+          </div>
           <div className="flex items-center gap-2">
             {!isLoggedIn && (
               <Link
                 href="/support"
-                className="px-4 py-1.5 rounded-lg text-xs font-bold bg-white/[0.07] border border-white/15 text-white/50 hover:bg-white/[0.12] hover:text-white/70 transition-colors"
+                className="hidden sm:inline-block whitespace-nowrap px-4 py-1.5 rounded-lg text-xs font-bold bg-white/[0.07] border border-white/15 text-white/50 hover:bg-white/[0.12] hover:text-white/70 transition-colors"
               >
                 🎫 Support
               </Link>
@@ -294,8 +324,43 @@ export default function LandingPage() {
         </div>
       )}
 
-      {/* ── HERO ── */}
-      <section className="relative max-w-4xl mx-auto px-5 pt-20 pb-16 text-center">
+      {/* ── HERO: the company ── */}
+      <section className="relative max-w-4xl mx-auto px-5 pt-20 pb-14 text-center">
+        <p className="inline-flex items-center gap-2 text-[11px] font-black tracking-[0.25em] uppercase text-white/60 bg-[#0a0f1e] border border-white/10 rounded-full px-4 py-1.5 mb-8">
+          <span className="w-1.5 h-1.5 rounded-full bg-itoolbox-red" aria-hidden/>
+          {COMPANY.name} PH · Since {COMPANY.founded}
+        </p>
+        <h1 className="text-5xl sm:text-7xl font-black leading-[1.05] tracking-tight mb-6 text-balance">
+          Building tomorrow&apos;s <span className="text-itoolbox-red">solutions today!</span>
+        </h1>
+        <p className="text-sm sm:text-lg text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed">{COMPANY.intro}</p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center mb-12">
+          <a href="#products" onClick={(e) => scrollToSection(e, "products")}
+            className="px-10 py-3.5 rounded-xl font-black text-sm bg-itoolbox-red hover:bg-red-700 transition-all shadow-[0_0_40px_rgba(239,63,52,0.3)] hover:shadow-[0_0_60px_rgba(239,63,52,0.5)]">
+            Explore Products & Services ↓
+          </a>
+          <Link href={isLoggedIn ? "/dashboard" : "/login?page=account"}
+            className="px-10 py-3.5 rounded-xl font-bold border border-white/20 text-white/80 hover:bg-white/5 transition-colors text-sm">
+            {isLoggedIn ? "Go to Dashboard" : "Go to Platform"}
+          </Link>
+        </div>
+        <div className="grid grid-cols-3 gap-3 max-w-xl mx-auto">
+          {[
+            { value: String(COMPANY.founded), label: "Founded" },
+            { value: String(PRODUCTS.length), label: "Products & Services" },
+            { value: "BantAI", label: "Our flagship, in private beta" },
+          ].map((s) => (
+            <div key={s.label} className="rounded-2xl border border-white/[0.06] bg-[#0c1326]/80 py-4 px-2">
+              <div className="text-2xl sm:text-3xl font-black text-itoolbox-red">{s.value}</div>
+              <div className="text-[10px] sm:text-xs text-white/50 mt-1">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── FLAGSHIP: BantAI ── */}
+      <section id="bantai" className="relative max-w-4xl mx-auto px-5 pt-16 pb-16 text-center scroll-mt-16">
+        <p className="text-[11px] font-black tracking-[0.25em] uppercase text-green-400 mb-6">Our flagship · Private beta</p>
         {/* BantAI hero card */}
         <div className="animate-float mb-8">
           <div className="rounded-3xl shadow-2xl overflow-hidden ring-1 ring-white/10 mx-auto max-w-md">
@@ -308,12 +373,12 @@ export default function LandingPage() {
         </div>
 
         {/* Title */}
-        <h1 className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-6">
+        <h2 className="text-5xl sm:text-7xl font-black leading-none tracking-tight mb-6">
           <span className="text-itoolbox-red">BantAI</span>
           <br />
           {/* A long line at the 7xl of "BantAI" fills three lines and pushes the CTAs below the fold. */}
           <span className="block mt-3 text-3xl sm:text-5xl text-balance text-green-500">The AI Assistant That Explains Why</span>
-        </h1>
+        </h2>
 
         <p className="text-sm sm:text-base text-white/40 mb-10 tracking-widest font-medium uppercase">
           From Storm Bulletin to Evidence-Backed Action Plan
@@ -322,10 +387,10 @@ export default function LandingPage() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
           <Link
-            href={isLoggedIn ? "/dashboard" : "/login?page=account"}
+            href={isLoggedIn ? "/bantai" : "/login?page=bantai"}
             className="px-10 py-3.5 rounded-xl font-black text-sm bg-itoolbox-red hover:bg-red-700 transition-all shadow-[0_0_40px_rgba(239,63,52,0.3)] hover:shadow-[0_0_60px_rgba(239,63,52,0.5)]"
           >
-            {isLoggedIn ? "Go to Dashboard" : "Go to Platform"}
+            Ask BantAI
           </Link>
           <button
             type="button"
@@ -437,12 +502,15 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="border-t border-white/[0.05]">
-        <div className="bg-white text-gray-600 py-2.5 px-5 text-center text-xs">
-          © Copyright {new Date().getFullYear()} {branding.appName}. All Rights Reserved.
-        </div>
-      </footer>
+      {/* ── THE COMPANY: content from lib/company.ts ── */}
+      <ProductsSection/>
+      <AboutSection/>
+      <MissionVisionSection/>
+      <TeamSection/>
+      <PartnersSection/>
+      <ContactSection/>
+
+      <SiteFooter isLoggedIn={isLoggedIn}/>
 
       <style>{`
         @keyframes slideProgress {

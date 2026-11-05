@@ -18,26 +18,29 @@
 The backend (`itoolbox-backend`) is a separate FastAPI service — this repo only
 talks to it over HTTP, through the generated types.
 
-**Status (3 November 2026):**
+**Status (5 November 2026):**
 
 - Live on the host at port 3100; the team opens it at <https://itoolbox.taildc9975.ts.net> over Tailscale, as itoolbox-backend's [user guide](https://github.com/IToolboxPH/itoolbox-backend/blob/main/docs/USER_GUIDE.md) explains.
+- `/` is IToolbox's company page: the tagline, BantAI as the flagship, then products, about, mission and vision, team, partners and contact, carried over from the company site.
 - `/bantai` answers from five Zetaris sources with cited evidence, on NVIDIA Nemotron.
 - `/autonomous` and `/intelligence` describe the next two pillars.
 - The model picker also lists Nemotron via Meterless, which works while Meterless Nightshift runs on the host, and GPT, Grok and Claude, which need a key or credits, as itoolbox-backend's README explains.
 
 ## Layout
 
-The UI has a public landing page, a sign-in portal that previews each module, a
+The UI has a company landing page, a sign-in portal that previews each module, a
 dashboard, and one workspace per module. The heart of it is BantAI, IToolbox's AI
 chat assistant, and its three pillars: the AI knowledge base and conversational
 agent (`bantai/`), intelligent workflow automation (`autonomous/`), and strategic
 intelligence with predictive insights and automated reports (`intelligence/`). Every module's
 name, tagline, colour, icon and route comes from `lib/platform-apps.ts`, so the
-landing carousel, ticker, hamburger menus and dashboard cards stay in step.
+landing carousel, ticker, hamburger menus and dashboard cards stay in step. The
+company's own content (products, team, partners, mission and the rest) is in
+`lib/company.ts`; edit it there to change the landing page.
 
 ```text
 app/
-  page.tsx                Landing: BantAI hero, module ticker, module carousel
+  page.tsx                Landing: company hero, BantAI, module carousel, company sections
   (auth)/login/           Sign-in portal with a preview page per module
   dashboard/              Module cards and your recent BantAI investigations
   account/                Account Profile: ID badge, details, change password
@@ -50,9 +53,11 @@ app/
   agent/  sources/        Redirects from the old routes
 components/
   agent/                  Model picker, investigation trail, evidence, answer
+  landing/                The landing page's company sections and footer
   bantai-widget.tsx       Floating Ask BantAI launcher on module pages
   ui/                     shadcn/ui primitives
 lib/
+  company.ts              The company's content for the landing page
   platform-apps.ts        The module list, and who may open each module
   nav.ts                  Each module's sub-pages
   api-client.ts           Typed client for every backend route
