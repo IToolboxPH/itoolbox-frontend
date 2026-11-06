@@ -12,11 +12,13 @@ import { InvestigationPanel } from "@/components/agent/investigation-panel";
 import { ModelPicker } from "@/components/agent/model-picker";
 import type { InvestigationSummary, ModelInfo, UserProfile } from "@itoolbox/ui/types";
 
-// Each answerable from the sources registered today, most of them across several.
+// Each answerable today: about IToolbox itself, or from the sources registered.
 const EXAMPLES = [
-  "Which cities should prepare for heavy rain in the next 48 hours, and why?",
-  "How exposed is Tacloban to typhoons and storm surge, and how often has it been hit?",
-  "In Typhoon Inday's latest bulletin, which areas had the highest wind signal, and how many people live in those provinces?",
+  "What can you help me with?",
+  "What products does IToolbox offer?",
+  "How many people live in Cebu province, and which hospitals are near Cebu City?",
+  "Which cities should prepare for heavy rain in the next 48 hours?",
+  "What strong earthquakes hit the Philippines this year?",
   "Saan pinakamainit ngayon, at gaano kalakas ang hangin doon?",
 ];
 
@@ -188,14 +190,14 @@ function Workspace() {
               <img src="/icons/bantai.jpg" alt="BantAI"
                 className="w-16 h-16 rounded-2xl object-cover mb-3 shadow-xl shadow-orange-900/30"/>
               <h1 className="text-xl font-black">Ask BantAI</h1>
-              <p className="text-gray-400 dark:text-white/40 text-xs mt-1">The AI Assistant That Explains Why · {branding.appName}</p>
+              <p className="text-gray-400 dark:text-white/40 text-xs mt-1">AI Knowledge Base & Conversational Agent · {branding.appName}</p>
             </div>
 
             {/* Greeting */}
             <div className="flex gap-3 justify-start">
               <img src="/icons/bantai.jpg" alt="" className="w-8 h-8 rounded-xl object-cover shrink-0 mt-0.5"/>
               <div className="max-w-[80%] rounded-2xl rounded-bl-md px-4 py-3 text-sm leading-relaxed bg-white dark:bg-white/[0.06] border border-gray-200 dark:border-white/[0.08] text-gray-700 dark:text-white/80 shadow-sm dark:shadow-none">
-                Hi! I&apos;m BantAI — I watch the storm so your operations team doesn&apos;t have to guess. Ask me why, and I&apos;ll plan an investigation, query every source in place, and show the evidence behind each answer.
+                Hi! I&apos;m BantAI, IToolbox&apos;s AI assistant. Ask me about IToolbox or about the data connected to this platform, in English or Filipino. Today that data covers Philippine places, population, facilities, weather, and hazards, with more on the way. I&apos;ll look through it and show the evidence behind each answer.
               </div>
             </div>
 
@@ -269,7 +271,7 @@ function Workspace() {
           <ModelPicker models={models} value={model} onChange={setModel} disabled={running}
             className="h-auto rounded-xl bg-white dark:bg-white/[0.05] border-gray-200 dark:border-white/10 text-xs max-w-[9rem] sm:max-w-[12rem]"/>
           <input ref={inputRef} type="text" value={question} onChange={(e) => setQuestion(e.target.value)}
-            placeholder="Ask BantAI why…"
+            placeholder="Ask BantAI…"
             className="flex-1 min-w-0 bg-white dark:bg-white/[0.05] border border-gray-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-sm placeholder-gray-300 dark:placeholder-white/20 focus:outline-none focus:border-orange-400/60 dark:focus:border-orange-500/40 transition-colors"/>
           {running ? (
             <button type="button" aria-label="Stop the investigation" onClick={() => abortRef.current?.abort()}
@@ -286,10 +288,13 @@ function Workspace() {
           )}
         </form>
         <p className="text-center text-[10px] text-gray-400 dark:text-white/20 mt-1.5 max-w-4xl mx-auto">
-          {modelLabel ? `${modelLabel} · ` : ""}Every answer cites its evidence — click a citation like E1 to jump to the rows behind it.
+          {modelLabel ? `${modelLabel} · ` : ""}Answers from the data cite their evidence — click a citation like E1 to jump to the rows behind it.
           {view && !running && (
             <button type="button" onClick={startNew} className="ml-2 text-orange-500 dark:text-orange-400 hover:underline">New question</button>
           )}
+        </p>
+        <p className="text-center text-[10px] text-gray-400 dark:text-white/20 mt-0.5 max-w-4xl mx-auto">
+          BantAI can make mistakes. For weather, disaster, and other life-safety decisions, follow PAGASA, NDRRMC, and your local government.
         </p>
       </div>
     </div>

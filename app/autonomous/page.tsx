@@ -72,29 +72,29 @@ export default function AutonomousPage() {
         {/* Hero */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 text-[10px] font-black tracking-widest uppercase text-green-600 dark:text-green-400 border border-green-400/40 dark:border-green-500/30 bg-green-50 dark:bg-green-500/10 rounded-full px-3 py-1 mb-4">
-            🌐 Public Overview · Storm Runs Need a Sign-In
+            🌐 Public Overview · Workflows Need a Sign-In
           </div>
           <h1 className="text-4xl font-black mb-3">BantAI Intelligent Workflow Automation</h1>
           <p className="text-gray-500 dark:text-white/50 text-base max-w-xl mx-auto">
-            Intelligent workflow orchestration and automation. The first workflow is storm response: when a
-            PAGASA bulletin puts your sites under a signal, BantAI scores each site&apos;s exposure and drafts
-            actions for a person to approve.
+            Intelligent workflow orchestration and automation. When something changes — a threshold crossed,
+            a request waiting, a report due — BantAI checks your connected data and drafts the next steps for a
+            person to approve.
           </p>
           {isLoggedIn && userName && (
             <p className="mt-3 text-green-600 dark:text-green-400 text-xs font-bold">
-              👋 Welcome, {userName.split(" ")[0]} — you&apos;re signed in. Storm runs unlocked.
+              👋 Welcome, {userName.split(" ")[0]} — you&apos;re signed in.
             </p>
           )}
         </div>
 
-        {/* Storm watch panel */}
+        {/* Workflow monitor panel */}
         <div className="rounded-2xl border border-green-400/30 dark:border-green-500/20 bg-green-50/50 dark:bg-green-500/[0.04] p-6 mb-8 text-center">
-          <p className="text-[10px] font-black uppercase tracking-widest text-green-600/70 dark:text-green-400/70 mb-3">Storm Watch</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-green-600/70 dark:text-green-400/70 mb-3">Workflow Monitor</p>
           <div className="grid grid-cols-3 gap-4 mb-6">
             {[
-              { label: "Active Bulletin",    value: "—", unit: "PAGASA",    icon: "🌀" },
-              { label: "Sites Under Signal", value: "—", unit: "of all sites", icon: "🏪" },
-              { label: "Awaiting Approval",  value: "—", unit: "actions",   icon: "✅" },
+              { label: "Active Workflows",  value: "—", unit: "running",   icon: "⚙️" },
+              { label: "Next Trigger",      value: "—", unit: "scheduled", icon: "⏱️" },
+              { label: "Awaiting Approval", value: "—", unit: "actions",   icon: "✅" },
             ].map((m) => (
               <div key={m.label} className="rounded-xl border border-gray-200 dark:border-white/[0.07] bg-white dark:bg-white/[0.03] p-4">
                 <div className="text-2xl mb-1">{m.icon}</div>
@@ -105,9 +105,9 @@ export default function AutonomousPage() {
             ))}
           </div>
           <button type="button" disabled className="px-8 py-3 rounded-xl text-sm font-black text-white bg-gradient-to-r from-green-600 to-green-700 opacity-60 cursor-not-allowed">
-            Start Storm Run — Coming Soon
+            Start a Workflow — Coming Soon
           </button>
-          <p className="text-gray-400 dark:text-white/20 text-[10px] mt-2">Live bulletin polling and storm replay are under development</p>
+          <p className="text-gray-400 dark:text-white/20 text-[10px] mt-2">Workflow triggers and scheduling are under development</p>
         </div>
 
         {/* Autonomous operations panel — recent investigations + proposed actions */}
@@ -167,9 +167,8 @@ export default function AutonomousPage() {
                   </p>
                   <div className="rounded-xl border border-dashed border-gray-200 dark:border-white/[0.1] p-4">
                     <p className="text-gray-500 dark:text-white/50 text-xs leading-relaxed">
-                      No action brief yet. Once the planner and skeptic agents land, each storm run proposes actions here
-                      — close early, pre-stock, move stock out of flood zones, reschedule deliveries — and every one
-                      waits for a manager to approve or edit it.
+                      No proposed actions yet. Once workflow automation lands, each run proposes actions here — tasks,
+                      notices, schedule changes — and every one waits for a person to approve or edit it.
                     </p>
                   </div>
                 </div>
@@ -181,15 +180,15 @@ export default function AutonomousPage() {
         {/* Features grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {[
-            { icon: "🌀", title: "PAGASA Bulletins",   desc: "Wind signals, tracks, and rainfall parsed from PAGASA through BagyoAPI, keyed by province.",           tag: "Public"                                         },
-            { icon: "🌊", title: "Hazard Layers",      desc: "Project NOAH flood, landslide, and storm-surge hazard, precomputed for every site.",                   tag: "Public"                                         },
-            { icon: "🔗", title: "Query in Place",     desc: "Zetaris federates every source, so nothing is copied into a new warehouse.",                         tag: "Public"                                         },
-            { icon: "🏪", title: "Site Exposure",      desc: "Each branch and distribution centre scored on wind signal, hazard, and the stock at risk.",            tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
-            { icon: "🚚", title: "Delivery Check",     desc: "Trips scheduled into landfall are flagged to reschedule before they leave.",                          tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
-            { icon: "🧐", title: "Skeptic Agent",      desc: "A critic challenges every action; thin or conflicting evidence goes back to the planner.",             tag: "Public"                                         },
-            { icon: "🧾", title: "Evidence Ledger",    desc: "Every claim stores its query, source, rows, and bulletin number — traceable after the storm.",         tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
-            { icon: "✅", title: "Manager Approval",   desc: "Nothing goes out until the manager approves or edits each action.",                                    tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
-            { icon: "📣", title: "Branch Notices",     desc: "Approved actions become drafted SMS or Viber notices to branch heads.",                              tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
+            { icon: "⏱️", title: "Triggers",        desc: "A schedule, a threshold crossed in your data, or a request starts a run.",                  tag: "Public" },
+            { icon: "🗂️", title: "Connected Data",  desc: "BantAI checks every connected source where it lives; nothing is copied into a new warehouse.", tag: "Public" },
+            { icon: "🧠", title: "Planning",        desc: "BantAI works out what to check and drafts the next steps from what it finds.",               tag: "Public" },
+            { icon: "📝", title: "Task Drafting",   desc: "Tasks, notices, and schedule changes drafted for your team to review.",                       tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
+            { icon: "🧭", title: "Routing",         desc: "Each step goes to the right person, with the context they need.",                             tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
+            { icon: "🧐", title: "Review Step",     desc: "A second check challenges every action; thin or conflicting evidence goes back for more data.", tag: "Public" },
+            { icon: "🧾", title: "Evidence Ledger", desc: "Every step stores its query, source, and rows, so each decision stays traceable.",            tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
+            { icon: "✅", title: "Human Approval",  desc: "Nothing goes out until a person approves or edits each action.",                              tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
+            { icon: "📣", title: "Notices",         desc: "Approved actions become drafted email, SMS, or Viber messages.",                              tag: isLoggedIn ? "Login Unlocked" : "Login Required" },
           ].map((f) => (
             <div key={f.title} className="rounded-2xl border border-gray-200 dark:border-white/[0.07] bg-white dark:bg-white/[0.03] p-4">
               <div className="flex items-start justify-between mb-3">
@@ -207,12 +206,12 @@ export default function AutonomousPage() {
         </div>
 
         <p className="text-center text-[11px] text-gray-400 dark:text-white/30 mb-10 max-w-xl mx-auto">
-          BantAI supports business-continuity decisions. It is not a warning service and defers to PAGASA, NDRRMC, and LGU advisories.
+          BantAI supports decisions, and people stay in charge. It is not a warning service: for weather, disaster, and other life-safety calls, PAGASA, NDRRMC, and your local government remain the authority.
         </p>
 
         {!isLoggedIn && (
           <div className="text-center border border-gray-200 dark:border-white/[0.07] bg-white dark:bg-white/[0.02] rounded-2xl p-6 mb-6">
-            <p className="text-gray-500 dark:text-white/50 text-sm mb-3">Sign in to run storm investigations, see each site&apos;s exposure, and approve action briefs.</p>
+            <p className="text-gray-500 dark:text-white/50 text-sm mb-3">Sign in to run workflows, check the evidence behind each step, and approve actions.</p>
             <Link href="/login?page=autonomous" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black text-white bg-itoolbox-red hover:bg-red-700 transition-colors">
               Sign In → Unlock Full Access
             </Link>

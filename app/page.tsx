@@ -7,7 +7,7 @@ import { useBranding, useModuleOverrides } from "@/components/branding-provider"
 import {
   AboutSection, ContactSection, MissionVisionSection, PartnersSection, ProductsSection, SiteFooter, TeamSection,
 } from "@/components/landing/company-sections";
-import { COMPANY, PRODUCTS } from "@/lib/company";
+import { BANTAI_ACCURACY_NOTE, COMPANY, PRODUCTS } from "@/lib/company";
 import { PLATFORM_APPS, getVisibleApps } from "@/lib/platform-apps";
 import type { UserProfile } from "@itoolbox/ui/types";
 
@@ -116,37 +116,37 @@ const SLIDE_EXTRAS: Record<string, { num: string; hype: string; detail: string }
   account: {
     num: "01",
     hype: "Your IToolbox ID. One sign-in for BantAI and every module of the platform.",
-    detail: "More than a login — a digital identity built for IToolbox. Your role decides what you can do, from reading an action brief to running an investigation to managing access, all from one accessible profile.",
+    detail: "More than a login — a digital identity built for IToolbox. Your role decides what you can do, from reading a report to asking BantAI to managing access, all from one accessible profile.",
   },
   bantai: {
     num: "02",
     hype: "Ask BantAI. Accessible information, faster responses, the evidence behind every answer.",
-    detail: "BantAI — from bantay, Filipino for “guard” — is the AI chat assistant and knowledge base at the heart of the platform, built for public- and private-sector teams. Ask in English or Filipino: it plans an investigation, queries every source in place through Zetaris, and cites the rows behind each claim — no answer without evidence.",
+    detail: "BantAI — from bantay, Filipino for “guard” — is the AI chat assistant and knowledge base at the heart of the platform, built for public- and private-sector teams. Ask in English or Filipino: it looks through your connected data and cites the records behind each claim — no answer without evidence.",
   },
   autonomous: {
     num: "03",
     hype: "From insight to action — orchestrated, automated, approved by people.",
-    detail: "Intelligent workflow orchestration and automation. When conditions change — heavy rain ahead, a storm signal raised — BantAI drafts the response: tasks, notices, and schedule changes, each routed to the right person. A skeptic agent sends back any step whose evidence is thin, and nothing goes out until a person approves.",
+    detail: "Intelligent workflow orchestration and automation. When something changes — a threshold crossed, a request waiting, a report due — BantAI drafts the response: tasks, notices, and schedule changes, each routed to the right person. A review step sends back anything whose evidence is thin, and nothing goes out until a person approves.",
   },
   intelligence: {
     num: "04",
     hype: "Predictive insights and automated reports — timely information, before it's needed.",
-    detail: "Advanced intelligence, predictive analytics, and automated insights. The Zetaris AI Data Harness federates every source BantAI reads — live weather today; PAGASA bulletins, Project NOAH hazard maps, and public data next — so BantAI queries each one where it lives, under local governance, with nothing copied.",
+    detail: "Advanced intelligence, predictive analytics, and automated insights across every source connected to the platform. BantAI queries each one where it lives, under local governance, with nothing copied into a new warehouse.",
   },
   tracker: {
     num: "05",
     hype: "Track every engagement. Own every milestone.",
-    detail: "End-to-end project management for IToolbox engagements — projects, team capacity, meeting records, and action items, from storm-season preparation to the post-event review.",
+    detail: "End-to-end project management for IToolbox engagements — projects, team capacity, meeting records, and action items, from the kickoff to the final review.",
   },
   secure: {
     num: "06",
     hype: "Governed by design — every session, role, and query checked.",
-    detail: "Signed sessions and role-based access across every module, plus a read-only SQL guard between BantAI and your data: every query the agent writes is checked before it reaches Zetaris. BantAI supports business-continuity decisions and defers to PAGASA, NDRRMC, and LGU advisories.",
+    detail: "Signed sessions and role-based access across every module, plus a read-only guard between BantAI and your data: every query BantAI writes is checked before it runs, and nothing it does can change your data.",
   },
   docs: {
     num: "07",
     hype: "One place. All docs. BantAI and the platform — organized and always current.",
-    detail: "The documentation hub for BantAI and the IToolbox platform — user guides, the API reference, the agent architecture, and the storm-run SOPs. Admin-curated, with access by role.",
+    detail: "The documentation hub for BantAI and the IToolbox platform — user guides, the API reference, the architecture, and the SOPs. Admin-curated, with access by role.",
   },
 };
 
@@ -348,7 +348,7 @@ export default function LandingPage() {
           {[
             { value: String(COMPANY.founded), label: "Founded" },
             { value: String(PRODUCTS.length), label: "Products & Services" },
-            { value: "BantAI", label: "Our flagship, in private beta" },
+            BANTAI_ACCURACY_NOTE,
           ].map((s) => (
             <div key={s.label} className="rounded-2xl border border-white/[0.06] bg-[#0c1326]/80 py-4 px-2">
               <div className="text-2xl sm:text-3xl font-black text-itoolbox-red">{s.value}</div>
@@ -377,11 +377,11 @@ export default function LandingPage() {
           <span className="text-itoolbox-red">BantAI</span>
           <br />
           {/* A long line at the 7xl of "BantAI" fills three lines and pushes the CTAs below the fold. */}
-          <span className="block mt-3 text-3xl sm:text-5xl text-balance text-green-500">The AI Assistant That Explains Why</span>
+          <span className="block mt-3 text-3xl sm:text-5xl text-balance text-green-500">Your AI Knowledge Base and Conversational Agent</span>
         </h2>
 
-        <p className="text-sm sm:text-base text-white/40 mb-10 tracking-widest font-medium uppercase">
-          From Storm Bulletin to Evidence-Backed Action Plan
+        <p className="text-sm sm:text-base text-white/50 mb-10 tracking-widest font-medium uppercase">
+          Accessible Information · Faster Responses · More Meaningful Conversations
         </p>
 
         {/* CTAs */}

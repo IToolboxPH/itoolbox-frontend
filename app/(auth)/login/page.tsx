@@ -184,7 +184,7 @@ function BantAITeaser({ onOpenBantAI, onSignIn, inputRef }: { onOpenBantAI: () =
       <div className="bg-[#5a0e0e] rounded-2xl rounded-tl-sm px-4 py-3 mb-2 w-full shadow-lg">
         <p className="text-white text-xs text-center leading-relaxed">
           Hello! 👋 I&apos;m <strong>BantAI</strong>, your Virtual Assistant.{" "}
-          {isLoggedIn ? "Ask me why below:" : "Sign in to unlock full AI assistance."}
+          {isLoggedIn ? "Ask me below:" : "Sign in to unlock full AI assistance."}
         </p>
       </div>
 
@@ -406,15 +406,14 @@ function AccountPage({
 }
 
 /* ── Page 2: Intelligent Workflow Automation preview ───────────── */
-// The first workflow is storm response: the loop one storm run goes through.
-// The preview shows its shape, not live state.
+// The loop one workflow run goes through. The preview shows its shape, not live state.
 const RUN_STEPS = [
-  { step: "Detect",       text: "A new PAGASA bulletin touches provinces with company sites" },
-  { step: "Plan",         text: "Which sites, hazards, stock, and trips to check" },
-  { step: "Query",        text: "Every source queried in place through Zetaris" },
-  { step: "Score",        text: "Each site's exposure: wind signal, flood, landslide, storm surge" },
-  { step: "Skeptic",      text: "Thin or conflicting evidence goes back to the planner" },
-  { step: "Action Brief", text: "Every action linked to its evidence, approved by the manager" },
+  { step: "Trigger", text: "A schedule, a threshold, or a request starts the run" },
+  { step: "Plan",    text: "What to check, and who needs to know" },
+  { step: "Query",   text: "Every connected source queried where it lives" },
+  { step: "Draft",   text: "Tasks and notices drafted from what BantAI finds" },
+  { step: "Review",  text: "Thin or conflicting evidence goes back for more data" },
+  { step: "Approve", text: "Every action linked to its evidence, approved by a person" },
 ];
 
 function AutonomousPage({
@@ -437,8 +436,8 @@ function AutonomousPage({
               📡
             </div>
             <div>
-              <p className="text-gray-900 dark:text-white font-black text-sm">Storm Operations</p>
-              <p className="text-gray-400 dark:text-white/40 text-[10px] leading-tight">Detect · Alert · Recommend<br/>IToolbox · BantAI</p>
+              <p className="text-gray-900 dark:text-white font-black text-sm">Workflow Automation</p>
+              <p className="text-gray-400 dark:text-white/40 text-[10px] leading-tight">Trigger · Draft · Approve<br/>IToolbox · BantAI</p>
             </div>
           </div>
           <div className="flex flex-col items-end gap-1 shrink-0">
@@ -453,9 +452,9 @@ function AutonomousPage({
 
         <SignInBanner onSignIn={onSignIn} pageName="BantAI Intelligent Workflow Automation"/>
 
-        {/* One storm run, step by step */}
+        {/* One workflow run, step by step */}
         <div className="bg-white dark:bg-white/[0.04] border border-gray-200 dark:border-white/10 rounded-xl p-4">
-          <p className="text-gray-500 dark:text-white/50 text-[10px] font-black uppercase tracking-widest mb-3">One Storm Run</p>
+          <p className="text-gray-500 dark:text-white/50 text-[10px] font-black uppercase tracking-widest mb-3">One Workflow Run</p>
           <ol className="space-y-2.5">
             {RUN_STEPS.map((s, i) => (
               <li key={s.step} className="flex items-start gap-3">
@@ -486,15 +485,15 @@ function AutonomousPage({
 }
 
 /* ── Page 3: Strategic Intelligence preview ────────────────────── */
-// BantAI's data sources (itoolbox-data-platform's DATA_SOURCES.md), each one
-// public and registered in Zetaris. `live: false` marks a planned source.
+// BantAI's data sources (itoolbox-data-platform's DATA_SOURCES.md), the live ones
+// all public. `live: false` marks a planned source.
 const DATA_PLAN = [
-  { name: "OpenWeather and NASA POWER: weather, forecasts, history", join: "City",            live: true },
-  { name: "PAGASA bulletins and wind signals (BagyoAPI)",             join: "PSGC code",       live: true },
-  { name: "Project NOAH flood, landslide, storm surge",               join: "City",            live: true },
-  { name: "USGS earthquakes, GDACS alerts",                           join: "Nearest city",    live: true },
-  { name: "IBTrACS typhoon tracks since 1951",                        join: "Storm, city",     live: true },
-  { name: "PSGC places, PSA population, OSM facilities",              join: "PSGC code, city", live: true },
+  { name: "Places, population, and public facilities",   live: true },
+  { name: "Weather, forecasts, and climate history",     live: true },
+  { name: "Tropical cyclone bulletins and typhoon history", live: true },
+  { name: "Hazard maps, earthquakes, and disaster alerts", live: true },
+  { name: "Your organization's documents and records",   live: false },
+  { name: "Business apps and integrations",              live: false },
 ];
 
 function IntelligencePage({
@@ -522,7 +521,7 @@ function IntelligencePage({
             </div>
             <div>
               <p className="text-gray-900 dark:text-white font-black text-sm">BantAI Strategic Intelligence</p>
-              <p className="text-purple-500 dark:text-purple-400/70 text-[10px] leading-tight">Zetaris AI Data Harness<br/>IToolbox · BantAI</p>
+              <p className="text-purple-500 dark:text-purple-400/70 text-[10px] leading-tight">Connected Data<br/>IToolbox · BantAI</p>
             </div>
           </div>
           <div className="flex items-center gap-1.5 shrink-0">
@@ -564,7 +563,6 @@ function IntelligencePage({
             <div key={d.name} className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0"/>
               <span className="text-gray-500 dark:text-white/60 text-[11px] flex-1">{d.name}</span>
-              <span className="text-gray-300 dark:text-white/25 text-[10px] font-mono hidden sm:block">{d.join}</span>
               <span className={`text-[9px] font-black uppercase tracking-widest rounded-full px-1.5 py-0.5 border ${
                 d.live ? "text-green-500 dark:text-green-400 border-green-500/30" : "text-gray-400 dark:text-white/40 border-gray-200 dark:border-white/10"
               }`}>
@@ -745,7 +743,7 @@ function AskBantAIPage({ onSignIn }: { onSignIn: () => void }) {
         <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3">
           <div className="bg-white dark:bg-white/[0.06] border border-gray-200 dark:border-white/10 rounded-2xl rounded-tl-sm p-4 max-w-[95%] sm:max-w-[90%]">
             <p className="text-gray-700 dark:text-white text-xs leading-relaxed">
-              Hello! 👋 I&apos;m <strong className="text-orange-500 dark:text-orange-300">BantAI</strong>, your AI assistant. Ask me why — I&apos;ll investigate every source and show you the evidence behind the answer.
+              Hello! 👋 I&apos;m <strong className="text-orange-500 dark:text-orange-300">BantAI</strong>, your AI assistant. Ask me about IToolbox or your connected data — I&apos;ll look through it and show you the evidence behind the answer.
             </p>
           </div>
         </div>
@@ -794,9 +792,9 @@ function ProjectTrackPage({
   const isLoggedIn = !!useStoredAuth().token;
   // Illustrative only: the shape of a client engagement, not tracked data.
   const milestones = [
-    { label: "Phase 1 — Data sources in Zetaris", pct: 100, done: true  },
+    { label: "Phase 1 — Data sources connected",  pct: 100, done: true  },
     { label: "Phase 2 — Agent loop and evidence", pct: 60,  done: false },
-    { label: "Phase 3 — Storm-desk interface",    pct: 30,  done: false },
+    { label: "Phase 3 — Team interface",          pct: 30,  done: false },
     { label: "Phase 4 — Pilot with a client",     pct: 0,   done: false },
   ];
 

@@ -37,7 +37,7 @@ export default function IntelligenceLayout({ children }: { children: React.React
           ))}
         </nav>
         <div className="px-4 py-3 border-t border-gray-200 dark:border-white/[0.08]">
-          <span className="text-[10px] text-gray-400 dark:text-white/25">Zetaris AI Data Harness</span>
+          <span className="text-[10px] text-gray-400 dark:text-white/25">Connected Data</span>
         </div>
       </aside>
       <main className="flex-1 bg-gray-50 dark:bg-[#0a0f1e] min-w-0">{children}</main>

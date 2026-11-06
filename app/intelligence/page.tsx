@@ -8,7 +8,7 @@ import { BantAIWidget } from "@/components/bantai-widget";
 import type { DataSource, HarnessStatus } from "@itoolbox/ui/types";
 
 const SUBPAGE_DESC: Record<string, string> = {
-  "Data Sources": "Every source Zetaris federates for BantAI, with its tables and columns.",
+  "Data Sources": "Every source connected for BantAI, with its tables and columns.",
 };
 
 export default function IntelligenceOverview() {
@@ -34,12 +34,12 @@ export default function IntelligenceOverview() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         {[
           {
-            label: "Zetaris",
+            label: "Data Layer",
             value: statusFailed ? "Unknown" : status === null ? "…" : status.connected ? "Connected" : "Unreachable",
-            sub: statusFailed ? "The status check failed" : status?.connected ? `API ${status.api_version ?? ""}`.trim() : status?.error ?? "",
+            sub: statusFailed ? "The status check failed" : status?.connected ? "Ready for BantAI" : status?.error ?? "",
             color: status?.connected ? "text-green-600 dark:text-green-400" : status || statusFailed ? "text-red-500 dark:text-red-400" : "text-gray-400",
           },
-          { label: "Sources", value: sources === null ? "…" : String(sources.length), sub: "federated, queried in place", color: "text-purple-600 dark:text-purple-400" },
+          { label: "Sources", value: sources === null ? "…" : String(sources.length), sub: "queried in place", color: "text-purple-600 dark:text-purple-400" },
           { label: "Tables",  value: tableCount === undefined ? "…" : String(tableCount), sub: "across every source",     color: "text-purple-600 dark:text-purple-400" },
         ].map((k) => (
           <div key={k.label} className="bg-white dark:bg-white/[0.04] rounded-xl border border-gray-200 dark:border-white/10 p-4">

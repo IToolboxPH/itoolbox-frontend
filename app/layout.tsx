@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "IToolbox · BantAI",
-  description: "IToolbox builds AI, IoT and web solutions for the public and private sectors. Its flagship, BantAI, is the AI assistant that explains why: accessible information, faster responses, and the evidence behind every answer.",
+  description: "IToolbox builds AI, IoT and web solutions for the public and private sectors. Its flagship, BantAI, is an AI knowledge base and conversational agent: accessible information, faster responses, and the evidence behind every answer.",
 };
 
 export default function RootLayout({

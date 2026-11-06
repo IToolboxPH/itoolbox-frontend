@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
-  ABOUT, COMPANY, MISSION, PARTNERS, PARTNERS_INTRO, PRODUCTS, PRODUCT_STATUS_LABEL, TEAM, VALUES, VISION,
-  mailto, type Product, type ProductStatus,
+  ABOUT, CO_FOUNDERS, COMPANY, FOUNDER, MISSION, OPEN_ROLES, PARTNERS, PARTNERS_INTRO, PRODUCTS, PRODUCT_STATUS_LABEL,
+  VALUES, VISION, mailto, type Product, type ProductStatus, type TeamMember,
 } from "@/lib/company";
 
 // The landing page's company sections: products, about, mission and vision,
@@ -82,6 +82,11 @@ export function ProductsSection() {
               <span key={f} className="flex gap-2 text-xs text-white/55"><span className="text-green-400" aria-hidden>✓</span>{f}</span>
             ))}
           </div>
+          {flagship.comingNext && (
+            <p className="text-xs text-white/45 mt-3">
+              <span className="font-bold text-white/60">Coming next:</span> {flagship.comingNext.join(" · ")}
+            </p>
+          )}
         </div>
         <a href={flagship.href} className="justify-self-start sm:justify-self-end px-5 py-2.5 rounded-xl text-xs font-black border border-orange-500/40 text-orange-400 hover:bg-orange-500/10 transition-colors whitespace-nowrap">
           See BantAI ↑
@@ -159,26 +164,41 @@ export function MissionVisionSection() {
   );
 }
 
+function TeamCard({ member, className = "" }: { member: TeamMember; className?: string }) {
+  return (
+    <div className={`${CARD} p-6 flex items-center gap-5 ${className}`}>
+      {member.photoSrc ? (
+        <img src={member.photoSrc} alt={member.name} className="w-20 h-20 rounded-2xl object-cover shrink-0 ring-1 ring-white/10"/>
+      ) : (
+        // The team chart shows the company logo until a photo is supplied.
+        <span className="w-20 h-20 rounded-2xl shrink-0 bg-white p-2 flex items-center justify-center">
+          <img src={COMPANY.logoSrc} alt="" className="max-w-full max-h-full object-contain"/>
+        </span>
+      )}
+      <div className="min-w-0">
+        <h3 className="font-black leading-tight">{member.name}</h3>
+        <p className="text-xs font-bold text-itoolbox-red mt-1">{member.role}</p>
+        <p className="text-xs text-white/50 mt-0.5">{member.focus}</p>
+        {member.facebook && (
+          <a href={member.facebook} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-[11px] font-bold text-blue-400 hover:underline">Facebook ↗</a>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function TeamSection() {
   return (
     <section id="team" className="relative max-w-6xl mx-auto px-5 py-20 scroll-mt-16">
       <SectionHeader eyebrow="Our Team" title="The People Behind IToolbox" sub="We're in our bootstrap phase, and growing."/>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {TEAM.map((m) => (
-          <div key={m.role} className={`${CARD} p-6 flex items-center gap-5`}>
-            {m.photoSrc ? (
-              <img src={m.photoSrc} alt={m.name} className="w-20 h-20 rounded-2xl object-cover shrink-0 ring-1 ring-white/10"/>
-            ) : (
-              <span className="w-20 h-20 rounded-2xl shrink-0 bg-white/[0.04] border border-dashed border-white/15 flex items-center justify-center text-2xl text-white/25" aria-hidden>＋</span>
-            )}
-            <div className="min-w-0">
-              <h3 className={`font-black leading-tight ${m.photoSrc ? "" : "text-white/40"}`}>{m.name}</h3>
-              <p className="text-xs text-white/50 mt-1">{m.role}</p>
-              {m.facebook && (
-                <a href={m.facebook} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 text-[11px] font-bold text-blue-400 hover:underline">Facebook ↗</a>
-              )}
-            </div>
-          </div>
+      <TeamCard member={FOUNDER} className="max-w-md mx-auto mb-4"/>
+      <div className="grid gap-4 md:grid-cols-3 mb-8">
+        {CO_FOUNDERS.map((m) => <TeamCard key={m.name} member={m}/>)}
+      </div>
+      <h3 className="text-center text-[11px] font-black uppercase tracking-widest text-white/40 mb-3">To be hired</h3>
+      <div className="flex flex-wrap justify-center gap-2">
+        {OPEN_ROLES.map((r) => (
+          <span key={r} className="text-xs font-bold px-3 py-1.5 rounded-full border border-dashed border-white/15 text-white/50">{r}</span>
         ))}
       </div>
     </section>

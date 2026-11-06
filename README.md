@@ -22,7 +22,7 @@ talks to it over HTTP, through the generated types.
 
 - Live on the host at port 3100; the team opens it at <https://itoolbox.taildc9975.ts.net> over Tailscale, as itoolbox-backend's [user guide](https://github.com/IToolboxPH/itoolbox-backend/blob/main/docs/USER_GUIDE.md) explains.
 - `/` is IToolbox's company page: the tagline, BantAI as the flagship, then products, about, mission and vision, team, partners and contact, carried over from the company site.
-- `/bantai` answers from five Zetaris sources with cited evidence, on NVIDIA Nemotron.
+- `/bantai` answers questions about IToolbox, and questions about five connected data sources with cited evidence, on NVIDIA Nemotron.
 - `/autonomous` and `/intelligence` describe the next two pillars.
 - The model picker also lists Nemotron via Meterless, which works while Meterless Nightshift runs on the host, and GPT, Grok and Claude, which need a key or credits, as itoolbox-backend's README explains.
 
@@ -108,7 +108,7 @@ Zetaris credentials live in `itoolbox-backend`, never here.
 Authorization header), and `components/agent/investigation.ts` folds each event
 into the view. The same reducer replays a stored investigation from
 `GET /api/v1/agent/investigations/{id}`, so a past run renders exactly as it did
-live, and `/bantai?id=…` links can be shared. `/bantai?q=…` starts an
+live, and a `/bantai?id=…` link opens it for its owner and admins. `/bantai?q=…` starts an
 investigation; the floating widget and the sign-in portal hand questions over
 that way.
 

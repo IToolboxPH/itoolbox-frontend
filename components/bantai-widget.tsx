@@ -43,7 +43,7 @@ export function BantAIWidget() {
           <div className="p-3 space-y-2">
             <div className="bg-gray-100 dark:bg-white/[0.06] border border-gray-200 dark:border-white/10 rounded-2xl rounded-tl-sm px-3 py-2">
               <p className="text-gray-700 dark:text-white/80 text-[11px] leading-relaxed">
-                Hello! 👋 I&apos;m BantAI. Ask me why — I&apos;ll investigate and show you the evidence.
+                Hello! 👋 I&apos;m BantAI. Ask me about IToolbox or your connected data — I&apos;ll show you the evidence.
               </p>
             </div>
           </div>

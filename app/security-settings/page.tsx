@@ -34,7 +34,7 @@ const ROLE_LABELS: Record<GlobalRole, string> = {
 const ROLE_DESCRIPTIONS: Record<GlobalRole, string> = {
   super_admin: "Full platform control — manages users, admins, and every module",
   admin:       "Manages users and model checks; sees everyone's investigations",
-  analyst:     "Asks BantAI and runs read-only SQL through the data harness",
+  analyst:     "Asks BantAI and runs read-only SQL on connected data",
   viewer:      "Asks BantAI and reads its own investigations",
 };
 
@@ -56,7 +56,7 @@ const ROLE_HEX: Record<GlobalRole, string> = {
 const PERMISSIONS: { label: string; roles: GlobalRole[] }[] = [
   { label: "Ask BantAI, read own investigations", roles: ["super_admin", "admin", "analyst", "viewer"] },
   { label: "Browse data sources",                 roles: ["super_admin", "admin", "analyst", "viewer"] },
-  { label: "Run read-only SQL on the harness",    roles: ["super_admin", "admin", "analyst"] },
+  { label: "Run read-only SQL on connected data", roles: ["super_admin", "admin", "analyst"] },
   { label: "See everyone's investigations",       roles: ["super_admin", "admin"] },
   { label: "Check model credentials",             roles: ["super_admin", "admin"] },
   { label: "Manage users",                        roles: ["super_admin", "admin"] },

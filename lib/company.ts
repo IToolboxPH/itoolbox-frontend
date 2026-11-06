@@ -20,7 +20,7 @@ export const ABOUT = {
   whoWeAre:
     "IToolbox is a technology startup founded in 2019, dedicated to building innovative digital solutions that leverage AI, IoT, and modern web technologies. We're on a mission to create practical, scalable products that solve real-world problems across both public and private sectors.",
   leadership:
-    "Our organization is led by Nicole John (Nico) A. Mortel, our Founding President & CEO — an accomplished IT professional, Senior Network Engineer, and Data Scientist with deep expertise in full‑stack development, AI/ML, and network infrastructure. Currently in our bootstrap phase, Nico M. drives both the technical and business fronts, overseeing product development, strategic direction, and operational execution as we build the foundation of our core offerings.",
+    "Our organization is led by Nicole John (Nico) A. Mortel, our Founding President & CEO — an accomplished IT professional, Senior Network Engineer, and Data Scientist with deep expertise in full‑stack development, AI/ML, and network infrastructure. Nico builds IToolbox with co-founders Jesson (Je) Paloma, our CTO; Jashane (Shane) Dy-Mortel, our COO; and Mark Prince Lawrence (Prince) Decinal, who leads product development. Currently in our bootstrap phase, the founding team drives both the technical and business fronts, overseeing product development, strategic direction, and operational execution as we build the foundation of our core offerings.",
 };
 
 export const VALUES = [
@@ -71,20 +71,25 @@ export interface Product {
   tagline: string;
   desc: string;
   features: string[];
+  /** What is on the way but not built yet, so the page never promises it as done. */
+  comingNext?: string[];
   status: ProductStatus;
   icon: string;
   /** In-page anchor or route for products that have one. */
   href?: string;
 }
 
-// BantAI first: it is the one running today. The rest, in the company site's order.
+// BantAI first: it is the one running today. It absorbed Marco Phoenix, the
+// company's planned conversational AI, whose unbuilt features are its comingNext.
+// The rest, in the company site's order.
 export const PRODUCTS: Product[] = [
   {
     key: "bantai",
     name: "BantAI",
     tagline: "AI Knowledge Base & Conversational Agent",
-    desc: "IToolbox's AI chat assistant. Ask in English or Filipino: it queries live public data where it lives, through the Zetaris AI Data Harness, and cites the rows behind every answer.",
-    features: ["Evidence behind every answer", "English and Filipino", "Live data, governed locally"],
+    desc: "IToolbox's AI assistant for the public and private sectors. Have a natural conversation in English or Filipino: BantAI searches your connected data, answers in plain language, and shows the evidence behind every claim.",
+    features: ["Natural conversation in English and Filipino", "Answers backed by your data, with sources shown", "Read-only access, governed locally"],
+    comingNext: ["Conversation memory", "Document knowledge base", "Workflow automation", "Voice interface", "App integrations"],
     status: "beta",
     icon: "💬",
     href: "#bantai",
@@ -92,9 +97,9 @@ export const PRODUCTS: Product[] = [
   {
     key: "informa",
     name: "InForMa",
-    tagline: "Intelligent Forest Monitoring",
-    desc: "AI-powered forest monitoring system with 100% chainsaw detection accuracy. Prevent illegal logging and forest fires with IoT technology.",
-    features: ["100% detection accuracy", "Raspberry Pi deployment", "Real-time alerts"],
+    tagline: "Innovative Forest Maintenance",
+    desc: "AI-powered forest monitoring that listens for chainsaws, to help prevent illegal logging and forest fires with IoT technology. Accuracy figures will follow field testing on real forest recordings.",
+    features: ["Chainsaw sound detection", "Raspberry Pi deployment", "Real-time alerts"],
     status: "active",
     icon: "🌳",
   },
@@ -106,15 +111,6 @@ export const PRODUCTS: Product[] = [
     features: ["IoT & smart devices", "Mobile & computer peripherals", "Secure payment & delivery"],
     status: "planning",
     icon: "🛒",
-  },
-  {
-    key: "marco-phoenix",
-    name: "Marco Phoenix",
-    tagline: "Conversational AI Assistant",
-    desc: "Advanced AI platform with natural conversation, knowledge base management, and intelligent automation. Your personal and business AI companion powered by cutting-edge language models.",
-    features: ["Natural conversation & memory", "Knowledge base & automation", "Voice interface & integrations"],
-    status: "planning",
-    icon: "🤖",
   },
   {
     key: "medconnect",
@@ -145,22 +141,38 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
+/** Stated in place of an accuracy rate until BantAI has a measured one. */
+export const BANTAI_ACCURACY_NOTE = {
+  value: "Ongoing",
+  label: "BantAI AI accuracy: model training and testing in progress",
+};
+
 export interface TeamMember {
   name: string;
   role: string;
-  /** Absent for a role that is still open. */
+  /** What this person looks after. */
+  focus: string;
+  /** Falls back to the company logo until a photo is supplied. */
   photoSrc?: string;
   facebook?: string;
 }
 
-export const TEAM: TeamMember[] = [
-  { name: "Nicole John (Nico) Mortel", role: "Founding President & CEO", photoSrc: "/company/nico-mortel.jpg", facebook: "https://web.facebook.com/njamortel" },
-  { name: "Jesson (Je) Paloma",        role: "CTO / Lead Developer",     photoSrc: "/company/jesson-paloma.jpg" },
-  { name: "To be hired", role: "Head of Product" },
-  { name: "To be hired", role: "Marketing & Sales Lead" },
-  { name: "To be hired", role: "CFO / Head of Finance" },
-  { name: "To be hired", role: "Head of People & Culture" },
+// As on the company's team chart: the founder, then the three co-founders.
+export const FOUNDER: TeamMember = {
+  name: "Nicole John (Nico) Mortel",
+  role: "Founding President & CEO",
+  focus: "Connectivity, Data Science, AI, and ML",
+  photoSrc: "/company/nico-mortel.jpg",
+  facebook: "https://web.facebook.com/njamortel",
+};
+
+export const CO_FOUNDERS: TeamMember[] = [
+  { name: "Jesson (Je) Paloma", role: "Co-founder / CTO", focus: "Frontend", photoSrc: "/company/jesson-paloma.jpg" },
+  { name: "Jashane (Shane) Dy-Mortel", role: "Co-founder / COO", focus: "UI/UX Design and QA" },
+  { name: "Mark Prince Lawrence (Prince) Decinal", role: "Co-founder / Product Dev", focus: "API & Backend" },
 ];
+
+export const OPEN_ROLES = ["Head of Product", "Marketing & Sales Lead", "CFO / Head of Finance", "Head of People & Culture"];
 
 export interface Partner {
   name: string;

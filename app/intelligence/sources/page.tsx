@@ -51,7 +51,7 @@ export default function SourcesPage() {
       <div className="mb-6 flex flex-wrap items-end gap-3">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Data Sources</h1>
-          <p className="text-sm text-gray-400 dark:text-white/40 mt-0.5">Every source BantAI queries in place through the Zetaris AI Data Harness</p>
+          <p className="text-sm text-gray-400 dark:text-white/40 mt-0.5">Every source BantAI queries in place</p>
         </div>
         {status && (
           <span className={`ml-auto text-[10px] font-black uppercase tracking-widest rounded-full px-2.5 py-1 border ${
@@ -59,7 +59,7 @@ export default function SourcesPage() {
               ? "text-green-600 dark:text-green-400 border-green-500/30 bg-green-500/10"
               : "text-red-500 dark:text-red-400 border-red-500/30 bg-red-500/10"
           }`}>
-            {status.connected ? `Zetaris ${status.api_version ?? ""} connected` : `Zetaris unreachable: ${status.error}`}
+            {status.connected ? "Data layer connected" : `Data layer unreachable: ${status.error}`}
           </span>
         )}
       </div>

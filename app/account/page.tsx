@@ -260,8 +260,8 @@ export default function AccountPage() {
             { icon: "🪪", title: `${branding.shortName} ID`,  desc: "Your identity across BantAI and every platform module — role, access, and sign-in in one card.", status: "live"    },
             { icon: "🔑", title: "Role-Based Access",         desc: "Viewer, analyst, admin, or super admin: your role decides what you can open and do.",            status: "live"    },
             { icon: "🔐", title: "Self-Service Password",     desc: "Change your password any time from this page. Sessions are signed and expire on their own.",    status: "live"    },
-            { icon: "🔔", title: "Storm Alerts",              desc: "BantAI's action briefs for your sites, sent to branch heads by SMS or Viber.",                    status: "planned" },
-            { icon: "📲", title: "Mobile Account App",        desc: "Carry your IToolbox ID and approve storm actions from your phone.",                              status: "planned" },
+            { icon: "🔔", title: "Smart Alerts",              desc: "BantAI's findings and action items for your team, sent by email, SMS, or Viber.",                status: "planned" },
+            { icon: "📲", title: "Mobile Account App",        desc: "Carry your IToolbox ID and approve actions from your phone.",                                    status: "planned" },
             { icon: "🛡️", title: "Privacy Controls",          desc: "Choose what your profile shows to other members of your organization.",                         status: "planned" },
           ].map((f) => (
             <div key={f.title} className="rounded-2xl border border-gray-200 dark:border-white/[0.07] bg-white dark:bg-white/[0.03] p-4">

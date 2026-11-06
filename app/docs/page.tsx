@@ -29,7 +29,7 @@ const SECTIONS = [
     border: "border-orange-400/40 dark:border-orange-500/30",
     bg: "bg-orange-50 dark:bg-orange-500/10",
     docs: [
-      { title: "What BantAI Can Do",       desc: "Capabilities, limits, and how to phrase a good “why” question.",                                  tag: "Guide"     },
+      { title: "What BantAI Can Do",       desc: "Capabilities, limits, and how to phrase a good question.",                                        tag: "Guide"     },
       { title: "Reading an Investigation", desc: "The trail, the evidence tables, and how each E1-style citation links an answer to its rows.",      tag: "Guide"     },
       { title: "Choosing a Model",         desc: "Nemotron, Meterless, GPT, Grok, or Claude — when to use each.",                               tag: "Reference" },
       { title: "Agent API",                desc: "POST /api/v1/agent/ask streams an investigation as server-sent events.",                         tag: "API"       },
@@ -37,15 +37,14 @@ const SECTIONS = [
   },
   {
     icon: "📡",
-    title: "Workflow Automation: Storm Response",
+    title: "Workflow Automation",
     color: "text-green-600 dark:text-green-400",
     border: "border-green-400/40 dark:border-green-500/30",
     bg: "bg-green-50 dark:bg-green-500/10",
     docs: [
-      { title: "The Storm Run",            desc: "Detect, plan, query, score, critique, brief: one run from bulletin to approved plan.",          tag: "Reference" },
-      { title: "Exposure Scoring",         desc: "How wind signal, flood, landslide, storm surge, and stock at risk combine into one site score.", tag: "Reference" },
-      { title: "The Skeptic Agent",        desc: "How a critic rejects thin evidence and sends the planner back for more data.",                  tag: "Reference" },
-      { title: "Approving an Action Brief", desc: "Approve, edit, or reject each action — nothing goes out without a manager.",                    tag: "Planned"   },
+      { title: "How a Workflow Runs", desc: "Trigger, plan, query, draft, review, approve: one run from start to approved plan.", tag: "Planned" },
+      { title: "The Review Step",     desc: "How a second check rejects thin evidence and asks for more data.",                   tag: "Planned" },
+      { title: "Approving Actions",   desc: "Approve, edit, or reject each action — nothing goes out without a person.",          tag: "Planned" },
     ],
   },
   {
@@ -55,10 +54,10 @@ const SECTIONS = [
     border: "border-purple-400/40 dark:border-purple-500/30",
     bg: "bg-purple-50 dark:bg-purple-500/10",
     docs: [
-      { title: "Data Sources",            desc: "Browsing what BantAI can see: sources, tables, and columns through Zetaris.",                         tag: "Guide"     },
-      { title: "The Data Plan",           desc: "Bulletins, hazard layers, branches, inventory, deliveries, SOPs — which are real and which synthetic.", tag: "Reference" },
-      { title: "Zetaris AI Data Harness", desc: "How federated queries reach each source in place, with nothing copied into a warehouse.",             tag: "Reference" },
-      { title: "Harness API",             desc: "/api/v1/harness/*: status, sources, tables, columns, and read-only queries.",                         tag: "API"       },
+      { title: "Data Sources",   desc: "Browsing what BantAI can see: sources, tables, and columns.",                     tag: "Guide"     },
+      { title: "The Data Plan",  desc: "Which sources are connected today and which come next.",                          tag: "Reference" },
+      { title: "The Data Layer", desc: "How queries reach each source in place, with nothing copied into a warehouse.",   tag: "Reference" },
+      { title: "Data API",       desc: "/api/v1/harness/*: status, sources, tables, columns, and read-only queries.",     tag: "API"       },
     ],
   },
   {
@@ -81,9 +80,9 @@ const SECTIONS = [
     border: "border-emerald-400/40 dark:border-emerald-500/30",
     bg: "bg-emerald-50 dark:bg-emerald-500/10",
     docs: [
-      { title: "Storm-Run SOP",               desc: "The operations manager's checklist from the first bulletin to the post-storm review.", tag: "Reference" },
-      { title: "Business Continuity Hand-off", desc: "How BantAI's briefs fit a company's continuity SOP and insurance terms.",                tag: "Reference" },
-      { title: "Advisories & Authority",      desc: "BantAI supports decisions; PAGASA, NDRRMC, and LGU advisories stay the authority.",       tag: "Reference" },
+      { title: "Incident Response SOP",       desc: "The team's checklist from the first alert to the post-incident review.",                          tag: "Reference" },
+      { title: "Business Continuity Hand-off", desc: "How BantAI's findings fit a company's continuity plan.",                                         tag: "Reference" },
+      { title: "Advisories & Authority",      desc: "BantAI supports decisions; for weather, disaster, and life-safety calls, official advisories stay the authority.", tag: "Reference" },
     ],
   },
   {
@@ -104,7 +103,7 @@ const SECTIONS = [
     border: "border-gray-300 dark:border-gray-500/30",
     bg: "bg-gray-100 dark:bg-gray-500/10",
     docs: [
-      { title: "Tech Stack Overview",          desc: "Next.js 15 static export, FastAPI, Postgres, Zetaris, and the model providers.",       tag: "Reference" },
+      { title: "Tech Stack Overview",          desc: "Next.js 15 static export, FastAPI, Postgres, the data layer, and the model providers.", tag: "Reference" },
       { title: "Environment Variables",        desc: "NEXT_PUBLIC_* values for the web client; every secret stays in itoolbox-backend.",     tag: "Reference" },
       { title: "Local & Tailscale Deployment", desc: "Running the stack in Docker and sharing it with teammates over Tailscale.",            tag: "Guide"     },
       { title: "Backend API Reference",        desc: "Full REST index: auth, admin, harness, and agent routes.",                             tag: "API"       },

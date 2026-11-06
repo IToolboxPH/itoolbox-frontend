@@ -8,7 +8,7 @@ const PLANNED = [
   { icon: "📁", title: "Projects", desc: "Every engagement with its owner, status, priority, and milestones." },
   { icon: "👥", title: "Team",     desc: "Who is on what, and how much capacity each person has left." },
   { icon: "🤝", title: "Meetings", desc: "Minutes for each meeting, linked to the project they move forward." },
-  { icon: "✅", title: "Actions",  desc: "Action items from meetings and storm reviews, tracked to done." },
+  { icon: "✅", title: "Actions",  desc: "Action items from meetings and reviews, tracked to done." },
 ];
 
 export default function TrackerOverview() {

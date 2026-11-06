@@ -18,12 +18,12 @@ export const SECURE_SUBPAGES: SubPage[] = [
   { label: "Security", href: "/security-settings" },
 ];
 
-// One storm run, start to finish -- all on the /autonomous page.
+// One workflow run, start to finish -- all on the /autonomous page.
 export const AUTONOMOUS_SUBPAGES: SubPage[] = [
-  { label: "Bulletins",    href: "/autonomous" },
-  { label: "Hazard",       href: "/autonomous" },
-  { label: "Exposure",     href: "/autonomous" },
-  { label: "Action Brief", href: "/autonomous" },
+  { label: "Triggers",  href: "/autonomous" },
+  { label: "Workflows", href: "/autonomous" },
+  { label: "Approvals", href: "/autonomous" },
+  { label: "Reports",   href: "/autonomous" },
 ];
 
 export const TRACKER_SUBPAGES: SubPage[] = [
